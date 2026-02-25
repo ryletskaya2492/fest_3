@@ -194,6 +194,8 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
+    gap: 2vw;
 }
 
 .tv-text {
@@ -202,4 +204,63 @@ body {
     font-size: 3.82vw;
     font-weight: 400;
     line-height: 1;
+}
+
+/* слой для линий*/
+.noise-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+.noise-pack {
+    position: absolute;
+    width: 100vw;
+}
+
+/* верхняя толстая */
+.noise-line {
+    height: 0.486vw;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    animation: tvFlicker 0.3s steps(2) infinite;
+}
+
+/* нижняя тонкая (под ней) */
+.noise-subline {
+    margin-top: 3vw;
+    height: 0.0694vw;
+    background: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    animation: tvFlicker2 0.4s steps(2) infinite;
+}
+
+/* СТАРТ */
+.start-btn {
+    width: 15vw;
+    height: 6.39vw;
+    background: #9B9B9B;
+    border: 0.21vw solid #FFFFFF;
+
+    font-family: "Basis33", sans-serif;
+    font-size: 4vw;
+    font-weight: 400;
+    color: #FFFFFF;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translate(-1vw, -2.5vw);
+    padding-top: 0.6vw;
+}
+
+.start-btn.visible {
+    display: flex;
+}
+
+.start-btn:hover {
+    background: #B3B3B3;
 }

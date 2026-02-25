@@ -1,0 +1,119 @@
+@media (max-width: 480px) {
+
+    .hero {
+        align-items: flex-start;
+    }
+
+    .stage {
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        transform: none;
+    }
+
+    /* слои */
+    .block {
+        z-index: 1;
+    }
+
+    .typo-top {
+        z-index: 2;
+    }
+
+    .tv-wrap {
+        z-index: 3;
+    }
+
+    .typo-bottom {
+        z-index: 2;
+    }
+
+    /* высокая левая колонна */
+    .b1 {
+        left: 6%;
+        top: 8%;
+        width: 20%;
+        height: 57%;
+    }
+
+    /* верхний правый блок */
+    .b2 {
+        right: 6%;
+        top: 8%;
+        width: 27%;
+        height:30%;
+    }
+
+    .b3 {
+        left: 8%;
+        bottom: 6%;
+        width: 84%;
+        height: 25%;
+    }
+    .b4 {
+        left: 8%;
+        top: 50%;
+        width: 84%;
+        height: 15%;
+    }
+    
+    .b5 {
+        display: none;
+    }
+
+    .b6 {
+        display: none;
+    }
+
+    .typo-top {
+        left: 12%;
+        top: 30%;
+        gap: 2vw;
+    }
+
+    .word-top {
+        font-size: 12vw;
+    }
+
+    .px-f {
+        height: 10vw;
+        margin-right: 1.2vw;
+        transform: translateX(1vw);
+    }
+
+   .px-a {
+       height: 10vw;
+       margin-left: 1vw;
+       transform: translateX(-1vw);
+   }
+
+   .px-l {
+       height: 8vw;
+       margin-left: -1vw;
+       transform: translateY(-0.8vw) translateX(-1.6vw);
+   }
+    .tv-wrap {
+        width: 82vw;
+        top: 56%;
+    }
+
+    .tv-text {
+        font-size: 5.2vw;
+    }
+
+    .typo-bottom {
+        left: 50%;
+        bottom: 14%;
+        transform: translateX(-50%);
+        gap: 2vw;
+    }
+
+    .word-bottom {
+        font-size: 12vw;
+    }
+
+    .px-o {
+        height: 10.5vw;
+        transform: translateY(1vw);
+    }
+}
