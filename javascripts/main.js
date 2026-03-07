@@ -1,27 +1,28 @@
-// анимация телевизионных линий
-
 document.addEventListener('DOMContentLoaded', () => {
-  startNoise()
+  startNoise('#noiseLayerHero')
+  startNoise('#noiseLayerSecurity')
+  startIntro()
 })
 
-// рандомные интервалы
-function startNoise() {
-  let noiseLayer = document.querySelector('#noiseLayer')
+function startNoise(layerId) {
+  let noiseLayer = document.querySelector(layerId)
+
+  if (!noiseLayer) {
+    return
+  }
 
   setInterval(() => {
     let chance = Math.random()
 
     if (chance < 0.6) {
       return
+    } else {
+      createNoisePack(noiseLayer)
     }
-
-    else createNoisePack(noiseLayer)
   }, 120)
 }
 
-// добавление линий на слой с уловием "шанс" > 0.6
 function createNoisePack(noiseLayer) {
-
   let pack = document.createElement('div')
   pack.classList.add('noise-pack')
 
@@ -36,27 +37,17 @@ function createNoisePack(noiseLayer) {
 
   pack.style.left = '0'
 
-
-//   рандомное расположение
   let top = Math.random() * 90
   pack.style.top = top + '%'
+
   noiseLayer.append(pack)
 
-
-//   время существования на слое
   let life = 600 + Math.random() * 1200
 
-// удаление с слоя
   setTimeout(() => {
     pack.remove()
   }, life)
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  startNoise()
-  startIntro()
-})
 
 
 // КНОПКА СТАРТ

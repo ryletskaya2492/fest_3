@@ -17,7 +17,6 @@ body {
 }
 
 .hero {
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,24 +28,6 @@ body {
     width: 100vw;
     aspect-ratio: 1440 / 900;
     overflow: hidden;
-    transform: translateY(-5vh);
-}
-
-/* слои */
-.block {
-    z-index: 1;
-}
-
-.typo-top {
-    z-index: 2;
-}
-
-.tv-wrap {
-    z-index: 3;
-}
-
-.typo-bottom {
-    z-index: 4;
 }
 
 /* синие блоки */
@@ -102,6 +83,7 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: 3;
 }
 
 .typo-top {
@@ -206,7 +188,6 @@ body {
     line-height: 1;
 }
 
-/* слой для линий*/
 .noise-layer {
     position: absolute;
     inset: 0;
@@ -214,12 +195,50 @@ body {
     z-index: 2;
 }
 
-
 .noise-pack {
     position: absolute;
     width: 100vw;
 }
 
+.noise-line {
+    height: 0.486vw;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    animation: tvFlicker 0.3s steps(2) infinite;
+}
+
+.noise-subline {
+    margin-top: 3vw;
+    height: 0.0694vw;
+    background: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    animation: tvFlicker2 0.4s steps(2) infinite;
+}
+
+.block {
+    position: absolute;
+    background: #0200CD;
+    z-index: 1;
+}
+
+.noise-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.typo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.tv-wrap {
+    position: absolute;
+    z-index: 3;
+}
 /* верхняя толстая */
 .noise-line {
     height: 0.486vw;
@@ -263,4 +282,188 @@ body {
 
 .start-btn:hover {
     background: #B3B3B3;
+}
+
+/* ВТОРОЙ БЛОК */
+.security {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: #EEEEFF;
+}
+
+.security-stage {
+    position: relative;
+    width: 100vw;
+    aspect-ratio: 1440 / 900;
+    overflow: hidden;
+}
+
+/* ЧЕРНЫЕ ПОДЛОЖКИ */
+
+.security-bg {
+    position: absolute;
+    background: #000;
+}
+
+.security-bg-1 {
+    left: 0%;
+    top: 14%;
+    width: 100%;
+    height: 80%;
+}
+
+/* правый верхний выступ */
+.security-bg-2 {
+    left: 48%;
+    top: 5%;
+    width: 27%;
+    height: 15%;
+}
+
+/* правое продолжение */
+.security-bg-3 {
+    right: 0%;
+    top: 14%;
+    width: 26%;
+    height: 52%;
+}
+
+/* нижний левый кусок */
+.security-bg-4 {
+    left: 6%;
+    bottom: 0%;
+    width: 48%;
+    height: 50%;
+}
+
+/* ВЕРХНЯЯ ЧАСТЬ */
+
+.security-header {
+    position: absolute;
+    top: 9%;
+    left: 6%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* ОШИБКО */
+
+.security-title {
+    display: flex;
+    align-items: baseline;
+    gap: 1vw;
+    z-index: 2;
+    transform: translate(-5vw, 3vw);
+}
+
+.security-o {
+    height: 10vw;
+    transform: translate(0, 1vw);
+}
+
+.security-word {
+    color: #FFF;
+    font-family: "Inter";
+    font-size: 10vw;
+    font-weight: 400;
+}
+
+/* ХЭШ И БЕЗОПАСНОСТЬ */
+
+.security-side {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    width: fit-content;
+    transform: translate(-4vw, -2vw);
+}
+
+.security-hash {
+    height: 17vw;
+    transform: none;
+}
+
+.security-one {
+    height: 16vw;
+    transform: translate(-2vw, -0.6vw);
+}
+
+.security-security {
+    color: #FFF;
+    font-family: "Inter";
+    font-size: 2.78vw;
+    text-transform: uppercase;
+    padding: 0.3vw 0.8vw;
+
+    transform: translate(-2vw, 0vw);
+    /* двигаем влево */
+}
+
+/* ОКНО */
+
+.security-window-wrap {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    /* transform: translate(-20%, -50%); */
+    width: 45vw;
+    z-index: 3;
+}
+
+.security-window {
+    width: 100%;
+    display: block;
+}
+
+/* ТЕКСТ В ОКНЕ */
+
+.security-window-content {
+    position: absolute;
+    left: 7%;
+    top: 19%;
+    width: 86%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.security-window-text {
+    color: #000;
+    font-family: "Basis33";
+    font-size: 1.94vw;
+    line-height: 0.9;
+}
+
+/* КНОПКА */
+
+.security-start {
+    width: 9vw;
+    height: 3.5vw;
+    background: #ffffff;
+    border: 0.14vw solid #000;
+    font-family: "Basis33";
+    font-size: 2.3vw;
+    cursor: pointer;
+}
+
+
+.security-bg {
+    position: absolute;
+    z-index: 1;
+}
+
+.noise-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.security-header,
+.security-window-wrap {
+    position: absolute;
+    z-index: 3;
 }
