@@ -60,14 +60,13 @@
         <section class="security">
             <div class="security-stage">
         
-                <!-- черные блоки -->
                 <div class="security-bg security-bg-1"></div>
                 <div class="security-bg security-bg-2"></div>
                 <div class="security-bg security-bg-3"></div>
                 <div class="security-bg security-bg-4"></div>
+        
                 <div class="noise-layer" id="noiseLayerSecurity"></div>
         
-                <!-- заголовок -->
                 <div class="security-header">
                     <div class="security-title">
                         <img src="images/o.svg" class="security-o" alt="">
@@ -79,32 +78,60 @@
                         <img src="images/1.svg" class="security-one" alt="">
                         <div class="security-security">БЕЗОПАСНОСТЬ</div>
                     </div>
-        
                 </div>
         
-                <!-- окно -->
+                <!-- экран описания -->
                 <div class="security-window-wrap" id="securityWindowWrap">
-        
                     <img src="images/window.svg" class="security-window" alt="window">
         
                     <div class="security-window-content">
-        
                         <div class="security-window-text">
                             Неизвестный объект пытается проникнуть<br>
                             в вашу систему.<br><br>
-        
-                            Используйте стрелки, чтобы управлять<br>
-                            компьютером и избежать Соника, который<br>
-                            преследует вас по лабиринту.
+                            
+                            Управляйте компьютером и двигайтесь<br>
+                            по лабиринту, избегая Соника,<br>
+                            который преследует вас.<br><br>
+                            
+                            → движение вперёд<br>
+                            ← движение назад
                         </div>
         
-                        <button class="security-start">
+                        <button class="security-start" id="securityStartBtn">
                             старт
                         </button>
-        
                     </div>
-        
                 </div>
+        
+                <!-- экран игры -->
+                <div class="game-screen" id="gameScreen">
+                    <div class="lab-wrap" id="labWrap">
+                        <img src="images/lab_p.svg" class="lab-image" alt="labyrinth">
+        
+                        <img src="images/pk.svg" class="lab-pk" id="labPk" alt="computer">
+                        <img src="images/son_r.svg" class="lab-sonic" id="labSonic" alt="sonic">
+                    </div>
+                </div>
+        
+                <!-- popup проигрыша -->
+                <div class="error-popup" id="errorPopup">
+                    <img src="images/win_small.svg" class="error-window" alt="error window">
+        
+                    <div class="error-content">
+                        <img src="images/son.svg" class="error-sonic" alt="sonic">
+                        <div class="error-text">Sonic is hacking your computer</div>
+                        <button class="error-btn" id="errorBtn">WTF</button>
+                    </div>
+                </div>
+            <div class="mobile-controls" id="mobileControls">
+                <div class="ctrl-row">
+                    <button class="ctrl-btn" id="btnLeft">←</button>
+                    <button class="ctrl-btn" id="btnRight">→</button>
+                </div>
+            </div>
+
+            </div>
+        </section>
         
             </div>
         </section>

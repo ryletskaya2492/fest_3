@@ -1,3 +1,41 @@
+@media (max-width: 768px) {
+    #gameScreen {
+        transform: translateY(-12vw);
+    }
+
+    .mobile-controls {
+        position: absolute;
+        left: 50%;
+        top: 75%;
+        transform: translateX(-50%);
+        justify-content: center;
+        z-index: 6;
+    }
+
+    .mobile-controls.visible {
+        display: flex;
+    }
+
+    .ctrl-row {
+        display: flex;
+        gap: 3vw;
+    }
+
+    .ctrl-btn {
+        width: 10vw;
+        height: 10vw;
+        background: transparent;
+        border: 0.35vw solid #fff;
+        color: #fff;
+        font-family: "Basis33", sans-serif;
+        font-size: 5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
 @media (max-width: 414px) {
 
     .hero {
@@ -67,7 +105,6 @@
 
     .typo-top {
         left: 12%;
-        top: 30%;
         gap: 2vw;
     }
 
@@ -96,7 +133,14 @@
         width: 82vw;
         top: 56%;
     }
-
+    .start-btn {
+        width: 24vw;
+        height: 10vw;
+        font-size: 6vw;
+        border: 0.35vw solid #FFFFFF;
+        transform: translate(-1vw, -2vw);
+        padding-top: 0.8vw;
+    }
     .tv-text {
         font-size: 5.2vw;
     }
@@ -116,124 +160,218 @@
         height: 10.5vw;
         transform: translateY(1vw);
     }
-        .security {
-            min-height: 100vh;
-            align-items: flex-start;
-        }
-    
-        .security-stage {
-            width: 100vw;
-            height: 100vh;
-            aspect-ratio: auto;
-        }
-    
-        /* черные блоки */
-        .security-bg-1 {
-            left: 0%;
-            top: 10%;
-            width: 100%;
-            height: 90%;
-        }
-    
-        .security-bg-2 {
-            left: 50%;
-            top: 5%;
-            width: 70%;
-            height: 10%;
-        }
-    
-        .security-bg-3 {
-            display: none;
-        }
-    
-        .security-bg-4 {
-            display: none;
-        }
-    
-        /* верхняя часть */
-        .security-header {
-            top: 8%;
-            left: 4%;
-            width: 94%;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 3vw;
-        }
-    
-        /* ОШИБКО */
-        .security-title {
-            gap: 1.2vw;
-            transform: translate(0, 4vw);
-        }
-    
-        .security-o {
-            height: 18vw;
-            transform: translate(0, 1vw);
-        }
-    
-        .security-word {
-            font-size: 20vw;
-        }
-    
-        /* правая группа */
-        .security-side {
-            gap: 2vw;
-            transform: translate(0, 0);
-        }
-    
-        .security-hash {
-            height: 27vw;
-        }
-    
-        .security-one {
-            height: 27vw;
-            transform: translate(-1vw, -0.4vw);
-        }
-    
-        .security-security {
-            font-size: 5vw;
-            padding: 0;
-            transform: translate(10vw, -37vw);
-        }
-    
-        /* окно */
-        .security-window-wrap {
-            left: 50%;
-            top: 43%;
-            transform: translateX(-50%);
-            width: 88vw;
-        }
-    
-        .security-window-content {
-            left: 7%;
-            top: 18%;
-            width: 86%;
-            height: 72%;
-        }
-    
-        .security-window-text {
-            font-size: 4.2vw;
-            line-height: 0.95;
-        }
-    
-        .security-start {
-            width: 18vw;
-            height: 7vw;
-            font-size: 4.8vw;
-        }
-}
+    .security {
+        min-height: 100vh;
+        align-items: flex-start;
+    }
 
-@media (max-width: 360px) {
+    .security-stage {
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+    }
 
-    /* опустить ФЕСТИВАЛЬ */
+    /* черные блоки */
+    .security-bg-1 {
+        left: 0%;
+        top: 10%;
+        width: 100%;
+        height: 90%;
+    }
+
+    .security-bg-2 {
+        left: 50%;
+        top: 5%;
+        width: 70%;
+        height: 10%;
+    }
+
+    .security-bg-3 {
+        display: none;
+    }
+
+    .security-bg-4 {
+        display: none;
+    }
+
+    /* верхняя часть */
+    .security-header {
+        top: 8%;
+        left: 4%;
+        width: 94%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 3vw;
+    }
+
+    /* ОШИБКО */
+    .security-title {
+        gap: 1.2vw;
+        transform: translate(0, 4vw);
+    }
+
+    .security-o {
+        height: 18vw;
+        transform: translate(0, 1vw);
+    }
+
+    .security-word {
+        font-size: 20vw;
+    }
+
+    /* правая группа */
+    .security-side {
+        gap: 2vw;
+        transform: translate(0, 0);
+    }
+
+    .security-hash {
+        height: 27vw;
+    }
+
+    .security-one {
+        height: 27vw;
+        transform: translate(-1vw, -0.4vw);
+    }
+
+    .security-security {
+        font-size: 5vw;
+        padding: 0;
+        transform: translate(10vw, -37vw);
+    }
+
+    /* окно */
+    .security-window-wrap {
+        left: 50%;
+        top: 43%;
+        transform: translateX(-50%);
+        width: 88vw;
+    }
+
+    .security-window-content {
+        left: 7%;
+        top: 18%;
+        width: 86%;
+        height: 72%;
+    }
+
+    .security-window-text {
+        font-size: 4.2vw;
+        line-height: 0.95;
+    }
+
+    .security-start {
+        width: 18vw;
+        height: 7vw;
+        font-size: 4.8vw;
+    }
     .typo-top {
-        top: 34%;
+        top: 30%;
+    }
+    .typo-bottom {
+        bottom: 18%;
     }
 
-    /* поднять ОШИБОК */
-    .typo-bottom {
-        bottom: 20%;
+    .mobile-controls {
+        position: absolute;
+        left: 50%;
+        bottom: 2vw;
+        transform: translateX(-50%);
+        justify-content: center;
+        z-index: 6;
+    }
+
+    .ctrl-row {
+        display: flex;
+        gap: 3vw;
+        transform: translateY(40%);
+    }
+
+    .ctrl-btn {
+        width: 16vw;
+        height: 16vw;
+        background: transparent;
+        border: 0.5vw solid #fff;
+        color: #fff;
+        font-family: "Basis33", sans-serif;
+        font-size: 8vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .lab-wrap {
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        width: 78vw;
+        height: 78vw;
+        transform: translate(-50%, -50%);
+    }
+
+    .lab-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: rotate(90deg);
+        transform-origin: center center;
+    }
+
+    .lab-pk,
+    .lab-sonic {
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .error-window {
+        width: 86vw;
+    }
+
+    .error-content {
+        width: 72vw;
+        height: 38vw;
+        top: 50%;
+        transform: translate(-50%, -42%);
+    }
+
+    .error-sonic {
+        left: 0;
+        top: 13vw;
+        width: 16vw;
+    }
+
+    .error-text {
+        left: 18vw;
+        top: 14vw;
+        width: 40vw;
+        font-size: 4.8vw;
+    }
+
+    .error-btn {
+        width: 22vw;
+        height: 8vw;
+        bottom: 1vw;
+        border: 0.3vw solid #101010;
+        font-size: 5vw;
     }
 
 }
+@media (max-width: 360px) {
+    .typo-top {
+            top: 34%;
+        }
+
+    .typo-bottom {
+        bottom: 21%;
+    }
+    
+    .lab-wrap {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    
+}
+
