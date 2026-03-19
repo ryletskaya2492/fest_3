@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startNoise('#noiseLayerSecurity')
   startIntro()
   initSecurityGame()
+  startBlueNoise('#overloadNoiseLayer')
 })
 
 function startNoise(layerId) {
@@ -494,4 +495,55 @@ function resetSecurityGame() {
 
   placePlayer()
   placeSonic()
+}
+
+// СИНИЕ ПОЛОСЫ
+function startBlueNoise(layerId) {
+  let noiseLayer = document.querySelector(layerId)
+
+
+  setInterval(() => {
+    let chance = Math.random()
+
+    if (chance < 0.6) {
+      return
+    } else {
+      createBlueNoisePack(noiseLayer)
+    }
+  }, 120)
+}
+function createBlueNoisePack(noiseLayer) {
+  // контейнер для линий
+  let pack = document.createElement('div')
+  pack.classList.add('overload-noise-pack')
+
+  // толстая линия
+  let line = document.createElement('div')
+  line.classList.add('overload-noise-line')
+
+  // тонкая линия
+  let sub = document.createElement('div')
+  sub.classList.add('overload-noise-subline')
+
+  // добавляем линии в контейнер
+  pack.append(line)
+  pack.append(sub)
+
+  // теперь не всегда слева, а случайно по X
+  let left = Math.random() * 55
+  pack.style.left = left + '%'
+
+  // случайная позиция по Y
+  let top = Math.random() * 90
+  pack.style.top = top + '%'
+
+  // добавляем в слой
+  noiseLayer.append(pack)
+
+  // случайное время жизни
+  let life = 600 + Math.random() * 1200
+
+  setTimeout(() => {
+    pack.remove()
+  }, life)
 }

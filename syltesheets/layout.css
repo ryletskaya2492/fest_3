@@ -8,6 +8,7 @@
 
 * {
     box-sizing: border-box;
+    
 }
 
 body {
@@ -302,6 +303,7 @@ body {
     width: 100vw;
     aspect-ratio: 1440 / 900;
     overflow: hidden;
+    z-index: 3;
 }
 
 /* ЧЕРНЫЕ ПОДЛОЖКИ */
@@ -336,7 +338,7 @@ body {
 
 /* нижний левый кусок */
 .security-bg-4 {
-    left: 6%;
+    left: 25%;
     bottom: 0%;
     width: 48%;
     height: 50%;
@@ -596,3 +598,191 @@ body {
     margin-top: 12vw;
 }
 
+/* БЛОК ПРО ПЕРЕГРУЗКУ */
+
+.overload {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: #EEEEFF;
+}
+
+.overload-stage {
+    position: relative;
+    width: 100vw;
+    aspect-ratio: 1440 / 900;
+    background: #EEEEFF;
+}
+
+/* заголовок */
+
+.overload-header {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+
+.overload-label {
+    position: absolute;
+    left: 0;
+    top: -6%;
+    width: 24%;
+    height: 11%;
+    background: #EEEEFF;
+
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 3.1vw;
+    font-weight: 400;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    padding-left: 2.8vw;
+}
+
+/* большой заголовок */
+
+.overload-title {
+    position: absolute;
+    left: 26%;
+    top: 12%;
+    display: flex;
+    align-items: baseline;
+    gap: 1vw;
+    transform: translateY(-8vw);
+}
+
+.overload-o-text {
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 8.8vw;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.overload-sh {
+    height: 7vw;
+}
+
+.overload-sh-wrap {
+    background: #0200CD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12vw;
+    height: 15vw;
+}
+
+.overload-word {
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 8.8vw;
+    font-weight: 400;
+    line-height: 1;
+
+}
+
+/* #2 справа */
+
+.overload-side {
+    position: absolute;
+    right: 0%;
+    top: -10%;
+    width: 28%;
+    height: 30%;
+    background: #0200CD;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.2vw;
+    padding: 2vw 1.8vw;
+}
+
+.overload-hash {
+    height: 15vw;
+}
+
+.overload-two {
+    height: 15vw;
+    transform: translateX(-3vw) translateY(-0.3vw);
+}
+
+/* окно */
+
+.overload-window-wrap {
+    position: absolute;
+    left: 2%;
+    top: 32%;
+    width: 45vw;
+    z-index: 4;
+    transform: translateY(-5vw);
+}
+
+.overload-window {
+    width: 100%;
+    display: block;
+}
+
+.overload-window-content {
+    position: absolute;
+    left: 6.8%;
+    top: 18%;
+    width: 86%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.overload-window-text {
+    color: #000;
+    font-family: "Basis33", sans-serif;
+    font-size: 1.95vw;
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+.overload-start {
+    width: 9vw;
+    height: 3.5vw;
+    background: #fff;
+    border: 0.14vw solid #000;
+    color: #000;
+    font-family: "Basis33", sans-serif;
+    font-size: 2.3vw;
+    cursor: pointer;
+}
+
+/* слой для будущих синих линий */
+
+.overload-noise-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+.overload-noise-pack {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    overflow: hidden; 
+}
+
+.overload-noise-line {
+    height: 0.486vw;
+    background: rgba(2, 0, 205, 0.9);
+    opacity: 0;
+    animation: tvFlicker 0.3s steps(2) infinite;
+}
+
+.overload-noise-subline {
+    margin-top: 1.4vw;
+    height: 0.0694vw;
+    background: rgba(2, 0, 205, 0.85);
+    opacity: 0;
+    animation: tvFlicker2 0.4s steps(2) infinite;
+}
