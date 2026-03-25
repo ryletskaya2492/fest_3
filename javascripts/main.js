@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   startIntro()
   initSecurityGame()
   startBlueNoise('#overloadNoiseLayer')
+  initOverloadGame()
+  startNoise('#collectionNoiseLayer')
 })
 
 function startNoise(layerId) {
@@ -546,4 +548,701 @@ function createBlueNoisePack(noiseLayer) {
   setTimeout(() => {
     pack.remove()
   }, life)
+}
+
+// ИГРА ПАПКИ
+
+// состояние игры
+let overloadStarted = false
+// закончилась или нет
+let overloadGameOver = false
+
+// папка, которая сейчас "в игре"
+let currentFolder = null
+// положение по осям
+let currentX = 0
+let currentY = 0
+// скорость движения за один шаг
+let currentDX = 0
+let currentDY = 0
+
+// счетчик папок
+let pileCount = 0
+// таймер игры
+let moveTimer = null
+
+// подготовка игры (поиск элементов, навешивание событий)
+function initOverloadGame() {
+  let startBtn = document.querySelector('#overloadStartBtn')
+  let popupBtn = document.querySelector('#popupBtn')
+  let game = document.querySelector('#overloadGame')
+
+  if (startBtn) {
+    startBtn.addEventListener('click', startOverloadGame)
+  }
+
+  if (popupBtn) {
+    popupBtn.addEventListener('click', resetOverloadGame)
+  }
+// если игра найдена, то корзина двигается + отмена скрола на телефоне
+  if (game) {
+    game.addEventListener('mousemove', moveKorzinaMouse)
+    game.addEventListener('touchmove', moveKorzinaTouch, { passive: false })
+  }
+}
+
+// запуск
+function startOverloadGame() {
+  let windowWrap = document.querySelector('.overload-window-wrap')
+  let game = document.querySelector('#overloadGame')
+  let popup = document.querySelector('#overloadPopup')
+  let pileLayer = document.querySelector('#pileLayer')
+  let foldersLayer = document.querySelector('#foldersLayer')
+  let korzina = document.querySelector('#korzina')
+
+  if (windowWrap) {
+    windowWrap.classList.add('hidden')
+  }
+
+  if (game) {
+    game.classList.add('show')
+  }
+
+  // очищаем слои с папками
+  if (pileLayer) {
+    pileLayer.innerHTML = ''
+  }
+
+  if (foldersLayer) {
+    foldersLayer.innerHTML = ''
+  }
+
+  // ставим корзину по центру
+  if (korzina) {
+    korzina.style.left = '50%'
+  }
+
+// очищаем таймер
+  clearInterval(moveTimer)
+
+  overloadStarted = true
+  overloadGameOver = false
+  pileCount = 0
+
+  // создаем нашу папку
+  createFolder()
+// каждые 20 секунд вызываем движение папки
+  moveTimer = setInterval(() => {
+    moveFolder()
+  }, 20)
+}
+
+// движение корзины
+function moveKorzinaMouse(event) {
+  if (overloadStarted == false) {
+    return
+  }
+
+  if (overloadGameOver == true) {
+    return
+  }
+
+  let game = document.querySelector('#overloadGame')
+  let korzina = document.querySelector('#korzina')
+  
+// размеры и положение блока игры на экране
+  let rect = game.getBoundingClientRect()
+// положение мышки от левого края экрана - положение блока (чтобы координата была внутри блока игры, а не относительно всего экрана)
+  let x = event.clientX - rect.left
+
+  // ограничения по краям экрана (15% слева и справа "мертвые", туда корзину нельзя затащить)
+  if (x < rect.width * 0.15) {
+    x = rect.width * 0.15
+  }
+
+  if (x > rect.width * 0.85) {
+    x = rect.width * 0.85
+  }
+
+  // и теперь переводим в проценты
+  korzina.style.left = x / rect.width * 100 + '%'
+}
+
+function moveKorzinaTouch(event) {
+  if (overloadStarted == false) {
+    return
+  }
+
+  if (overloadGameOver == true) {
+    return
+  }
+
+  // нельзя прокручивать страницу
+  event.preventDefault()
+
+  let game = document.querySelector('#overloadGame')
+  let korzina = document.querySelector('#korzina')
+
+  // такая же логика, что и на пк
+  let rect = game.getBoundingClientRect()
+  let x = event.touches[0].clientX - rect.left
+
+  if (x < rect.width * 0.15) {
+    x = rect.width * 0.15
+  }
+
+  if (x > rect.width * 0.85) {
+    x = rect.width * 0.85
+  }
+
+  korzina.style.left = x / rect.width * 100 + '%'
+}
+
+// создаем папку
+function createFolder() {
+  // если больше 40 папок, показываем попап
+  if (pileCount >= 40) {
+    showOverloadPopup()
+    return
+  }
+
+  let foldersLayer = document.querySelector('#foldersLayer')
+
+  // создаем тег, добавляем картинку и вещаем стиль
+  let folder = document.createElement('img')
+  folder.src = 'images/papka.png'
+  folder.className = 'papka-fly'
+ 
+  // тут типо 4 рандомные траектории (0-4)
+  let line = Math.floor(Math.random() * 4)
+
+  // появляется слева сверху и летит вправо вниз
+  if (line == 0) {
+  currentX = 8
+  currentY = 36
+  currentDX = 1.4
+  currentDY = 0.7
+}
+
+// появляется слева снизу и летит вправо вниз
+if (line == 1) {
+  currentX = 8
+  currentY = 50
+  currentDX = 1.4
+  currentDY = 0.55
+}
+
+// появляется справа сверху и летит влево вниз
+if (line == 2) {
+  currentX = 80
+  currentY = 36
+  currentDX = -1.2
+  currentDY = 0.7
+}
+
+// появляется справа снизу и летит влево вниз
+if (line == 3) {
+  currentX = 80
+  currentY = 50
+  currentDX = -1.2
+  currentDY = 0.55
+}
+
+// ставим в начальную точку
+  folder.style.left = currentX + '%'
+  folder.style.top = currentY + '%'
+
+// добавляем в html и запоминаем как текущую
+  foldersLayer.append(folder)
+  currentFolder = folder
+}
+
+
+function moveFolder() {
+  if (overloadStarted == false) {
+    return
+  }
+
+  if (overloadGameOver == true) {
+    return
+  }
+
+// двигаем папку
+  currentX = currentX + currentDX
+  currentY = currentY + currentDY
+
+  // обновляем ее положение на экране
+  currentFolder.style.left = currentX + '%'
+  currentFolder.style.top = currentY + '%'
+
+  // если попала в корзину убираем в кучу
+  if (folderCaught() == true) {
+    putFolderInPile()
+    return
+  }
+
+  // если не была поймана и вылетела за границу - тоже в кучу
+  if (currentY > 72) {
+    putFolderInPile()
+    return
+  }
+}
+
+// попадание в корзину
+function folderCaught() {
+  let game = document.querySelector('#overloadGame')
+  let korzina = document.querySelector('#korzina')
+
+  let gameRect = game.getBoundingClientRect()
+  let korzinaRect = korzina.getBoundingClientRect()
+
+  // из процентов в реальные координаты
+  let folderX = gameRect.left + gameRect.width * currentX / 100
+  let folderY = gameRect.top + gameRect.height * currentY / 100
+
+  // зона корзин, куда должна попасть папка
+  let leftEdge = korzinaRect.left + korzinaRect.width * 0.2
+  let rightEdge = korzinaRect.right - korzinaRect.width * 0.2
+  let topEdge = korzinaRect.top
+  let bottomEdge = korzinaRect.top + korzinaRect.height * 0.45
+
+  // проверяем что все координаты попали - поймана
+  if (folderX > leftEdge) {
+  if (folderX < rightEdge) {
+    if (folderY > topEdge) {
+      if (folderY < bottomEdge) {
+        return true
+      }
+    }
+  }
+}
+
+  return false
+}
+
+function putFolderInPile() {
+  let pileLayer = document.querySelector('#pileLayer')
+
+
+  // удаляем летящую папку и удаляем переменную
+  if (currentFolder) {
+    currentFolder.remove()
+    currentFolder = null
+  }
+
+  // создаем новый класс для папки в куче
+  let folder = document.createElement('img')
+  folder.src = 'images/papka.png'
+  folder.className = 'papka-pile'
+
+  // появляется на рандомных координатах и поворот
+  let randomX = 6 + Math.random() * 78
+  let randomY = 25 + Math.random() * 45
+  let randomRotate = -25 + Math.random() * 50
+
+  folder.style.left = randomX + '%'
+  folder.style.top = randomY + '%'
+  folder.style.transform = `rotate(${randomRotate}deg)`
+
+  pileLayer.append(folder)
+
+  // увеличиваем счетчик папок
+  pileCount = pileCount + 1
+
+  if (pileCount >= 40) {
+    showOverloadPopup()
+  } else {
+    createFolder()
+  }
+}
+
+function showOverloadPopup() {
+  let popup = document.querySelector('#overloadPopup')
+
+  overloadGameOver = true
+  clearInterval(moveTimer)
+
+  if (popup) {
+    popup.classList.add('show')
+  }
+}
+
+// сброс игры
+// тоже самое, что в начале, но наоборот
+function resetOverloadGame() {
+  let windowWrap = document.querySelector('.overload-window-wrap')
+  let game = document.querySelector('#overloadGame')
+  let popup = document.querySelector('#overloadPopup')
+  let pileLayer = document.querySelector('#pileLayer')
+  let foldersLayer = document.querySelector('#foldersLayer')
+
+  clearInterval(moveTimer)
+
+  if (windowWrap) {
+    windowWrap.classList.remove('hidden')
+  }
+
+  if (game) {
+    game.classList.remove('show')
+  }
+
+  if (popup) {
+    popup.classList.remove('show')
+  }
+
+  if (pileLayer) {
+    pileLayer.innerHTML = ''
+  }
+
+  if (foldersLayer) {
+    foldersLayer.innerHTML = ''
+  }
+
+  if (currentFolder) {
+    currentFolder.remove()
+    currentFolder = null
+  }
+
+  overloadStarted = false
+  overloadGameOver = false
+  pileCount = 0
+}
+
+// ИГРА РЫБЫ
+// ===== ИГРА КОЛЛЕКЦИЯ =====
+
+let collectionStarted = false
+let collectionPopupOpen = false
+let selectedFishElement = null
+let selectedFishName = ''
+let fishMoveTimer = null
+
+let fishList = [
+  'fish_dog',
+  'fish_hat',
+  'fish_normal',
+  'fish_not',
+  'fish_roses',
+  'fish_sneakers_2',
+  'fish_sneakers',
+  'fish_trash'
+]
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCollectionGame()
+  startNoise('#collectionNoiseLayer')
+})
+
+function initCollectionGame() {
+  let startBtn = document.querySelector('#collectionStartBtn')
+  let okBtn1 = document.querySelector('#fishOkBtn1')
+  let okBtn2 = document.querySelector('#fishOkBtn2')
+  let wtfBtn = document.querySelector('#fishWtfBtn')
+  let resetBtns = document.querySelectorAll('.fish-reset-btn')
+
+  if (startBtn) {
+    startBtn.addEventListener('click', startCollectionGame)
+  }
+
+  if (okBtn1) {
+    okBtn1.addEventListener('click', acceptFish)
+  }
+
+  if (okBtn2) {
+    okBtn2.addEventListener('click', acceptFish)
+  }
+
+  if (wtfBtn) {
+    wtfBtn.addEventListener('click', rejectFish)
+  }
+
+  resetBtns.forEach((button) => {
+    button.addEventListener('click', resetCollectionGame)
+  })
+}
+
+function startCollectionGame() {
+  let windowWrap = document.querySelector('.collection-window-wrap')
+  let game = document.querySelector('#collectionGame')
+  let fishLayer = document.querySelector('#fishLayer')
+  let popup = document.querySelector('#fishPopup')
+  let goodPopup = document.querySelector('#fishGoodPopup')
+  let badPopup = document.querySelector('#fishBadPopup')
+  let wrongFishPopup = document.querySelector('#fishWrongFishPopup')
+
+  if (windowWrap) {
+    windowWrap.classList.add('hidden')
+  }
+
+  if (game) {
+    game.classList.add('show')
+  }
+
+  if (fishLayer) {
+    fishLayer.innerHTML = ''
+  }
+
+  if (popup) {
+    popup.classList.remove('show')
+  }
+
+  if (goodPopup) {
+    goodPopup.classList.remove('show')
+  }
+
+  if (badPopup) {
+    badPopup.classList.remove('show')
+  }
+
+  if (wrongFishPopup) {
+    wrongFishPopup.classList.remove('show')
+  }
+
+  collectionStarted = true
+  collectionPopupOpen = false
+  selectedFishElement = null
+  selectedFishName = ''
+
+  createStartFish()
+  startFishMovement()
+}
+
+function createStartFish() {
+  let fishLayer = document.querySelector('#fishLayer')
+
+  if (!fishLayer) {
+    return
+  }
+
+  fishLayer.innerHTML = ''
+
+  fishLayer.append(createOneFish('fish_dog', 18, 38, 0.22))
+  fishLayer.append(createOneFish('fish_hat', 8, 68, 0.18))
+  fishLayer.append(createOneFish('fish_normal', 34, 52, 0.2))
+  fishLayer.append(createOneFish('fish_not', 72, 30, -0.22))
+  fishLayer.append(createOneFish('fish_roses', 82, 62, -0.18))
+  fishLayer.append(createOneFish('fish_sneakers_2', 55, 44, -0.2))
+  fishLayer.append(createOneFish('fish_sneakers', 2, 78, 0.16))
+  fishLayer.append(createOneFish('fish_trash', 78, 72, -0.24))
+}
+
+function createOneFish(name, left, top, speed) {
+  let fish = document.createElement('img')
+
+  fish.src = getFishSilhouetteSrc(name)
+  fish.className = 'silhouette-fish'
+  fish.style.left = left + '%'
+  fish.style.top = top + '%'
+
+  fish.dataset.name = name
+  fish.dataset.left = left
+  fish.dataset.top = top
+  fish.dataset.speed = speed
+
+  fish.addEventListener('click', () => {
+    openFishPopup(fish)
+  })
+
+  return fish
+}
+
+function startFishMovement() {
+  clearInterval(fishMoveTimer)
+
+  fishMoveTimer = setInterval(() => {
+    moveAllFish()
+  }, 20)
+}
+
+function moveAllFish() {
+  if (collectionStarted == false) {
+    return
+  }
+
+  if (collectionPopupOpen == true) {
+    return
+  }
+
+  let allFish = document.querySelectorAll('.silhouette-fish')
+
+  allFish.forEach((fish) => {
+    let left = Number(fish.dataset.left)
+    let speed = Number(fish.dataset.speed)
+
+    left = left + speed
+
+    if (speed > 0 && left > 110) {
+      left = -25
+    }
+
+    if (speed < 0 && left < -30) {
+      left = 110
+    }
+
+    fish.dataset.left = left
+    fish.style.left = left + '%'
+  })
+}
+
+function openFishPopup(fish) {
+  let popup = document.querySelector('#fishPopup')
+  let popupImage = document.querySelector('#fishPopupImage')
+  let popupName = document.querySelector('#fishPopupName')
+
+  if (!popup || !popupImage || !popupName) {
+    return
+  }
+
+  collectionPopupOpen = true
+  selectedFishElement = fish
+  selectedFishName = fish.dataset.name
+
+  popupImage.src = getFishImageSrc(selectedFishName)
+  popupName.textContent = getFishLabel(selectedFishName)
+
+  popup.classList.add('show')
+}
+
+function acceptFish() {
+  let popup = document.querySelector('#fishPopup')
+  let badPopup = document.querySelector('#fishBadPopup')
+
+  if (popup) {
+    popup.classList.remove('show')
+  }
+
+  collectionPopupOpen = false
+
+  if (selectedFishName == 'fish_trash') {
+    if (badPopup) {
+      badPopup.classList.add('show')
+    }
+    return
+  }
+
+  if (selectedFishElement) {
+    selectedFishElement.remove()
+    selectedFishElement = null
+  }
+
+  spawnReplacementFish()
+}
+
+function rejectFish() {
+  let popup = document.querySelector('#fishPopup')
+  let goodPopup = document.querySelector('#fishGoodPopup')
+  let wrongFishPopup = document.querySelector('#fishWrongFishPopup')
+
+  if (popup) {
+    popup.classList.remove('show')
+  }
+
+  collectionPopupOpen = false
+
+  if (selectedFishName == 'fish_trash') {
+    if (goodPopup) {
+      goodPopup.classList.add('show')
+    }
+  } else {
+    if (wrongFishPopup) {
+      wrongFishPopup.classList.add('show')
+    }
+  }
+}
+
+function spawnReplacementFish() {
+  let fishLayer = document.querySelector('#fishLayer')
+
+  if (!fishLayer) {
+    return
+  }
+
+  let randomIndex = Math.floor(Math.random() * fishList.length)
+  let name = fishList[randomIndex]
+
+  let top = 35 + Math.random() * 35
+  let fromLeft = Math.random() > 0.5
+
+  let left = 0
+  let speed = 0
+
+  if (fromLeft) {
+    left = -20
+    speed = 0.18 + Math.random() * 0.12
+  } else {
+    left = 110
+    speed = -(0.18 + Math.random() * 0.12)
+  }
+
+  fishLayer.append(createOneFish(name, left, top, speed))
+}
+
+function getFishSilhouetteSrc(name) {
+  return 'images/' + name + '_silhouette.png'
+}
+
+function getFishImageSrc(name) {
+  if (name == 'fish_hat') {
+    return 'images/fish_hat.png.png'
+  }
+
+  return 'images/' + name + '.png'
+}
+
+function getFishLabel(name) {
+  if (name == 'fish_dog') return 'рыбо собако'
+  if (name == 'fish_hat') return 'рыбо шляпо'
+  if (name == 'fish_normal') return 'fih'
+  if (name == 'fish_not') return 'рыбо-нет'
+  if (name == 'fish_roses') return 'рыбо розы'
+  if (name == 'fish_sneakers_2') return 'рыбо кроссовко 2'
+  if (name == 'fish_sneakers') return 'рыбо кроссовко'
+  if (name == 'fish_trash') return 'рыбо долино мусора'
+
+  return name
+}
+
+function resetCollectionGame() {
+  let windowWrap = document.querySelector('.collection-window-wrap')
+  let game = document.querySelector('#collectionGame')
+  let fishLayer = document.querySelector('#fishLayer')
+  let popup = document.querySelector('#fishPopup')
+  let goodPopup = document.querySelector('#fishGoodPopup')
+  let badPopup = document.querySelector('#fishBadPopup')
+  let wrongFishPopup = document.querySelector('#fishWrongFishPopup')
+
+  clearInterval(fishMoveTimer)
+
+  if (windowWrap) {
+    windowWrap.classList.remove('hidden')
+  }
+
+  if (game) {
+    game.classList.remove('show')
+  }
+
+  if (fishLayer) {
+    fishLayer.innerHTML = ''
+  }
+
+  if (popup) {
+    popup.classList.remove('show')
+  }
+
+  if (goodPopup) {
+    goodPopup.classList.remove('show')
+  }
+
+  if (badPopup) {
+    badPopup.classList.remove('show')
+  }
+
+  if (wrongFishPopup) {
+    wrongFishPopup.classList.remove('show')
+  }
+
+  collectionStarted = false
+  collectionPopupOpen = false
+  selectedFishElement = null
+  selectedFishName = ''
 }

@@ -1,0 +1,703 @@
+@media (max-width: 768px) {
+    #gameScreen {
+        transform: translateY(-12vw);
+    }
+
+    .mobile-controls {
+        position: absolute;
+        left: 50%;
+        top: 75%;
+        transform: translateX(-50%);
+        justify-content: center;
+        z-index: 6;
+    }
+
+    .mobile-controls.visible {
+        display: flex;
+    }
+
+    .ctrl-row {
+        display: flex;
+        gap: 3vw;
+    }
+
+    .ctrl-btn {
+        width: 10vw;
+        height: 10vw;
+        background: transparent;
+        border: 0.35vw solid #fff;
+        color: #fff;
+        font-family: "Basis33", sans-serif;
+        font-size: 5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 414px) {
+
+    .hero {
+        align-items: flex-start;
+    }
+
+    .stage {
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        transform: none;
+    }
+
+    /* слои */
+    .block {
+        z-index: 1;
+    }
+
+    .typo-top {
+        z-index: 2;
+    }
+
+    .tv-wrap {
+        z-index: 3;
+    }
+
+    .typo-bottom {
+        z-index: 2;
+    }
+
+    /* высокая левая колонна */
+    .b1 {
+        left: 6%;
+        top: 8%;
+        width: 20%;
+        height: 57%;
+    }
+
+    /* верхний правый блок */
+    .b2 {
+        right: 6%;
+        top: 8%;
+        width: 27%;
+        height:40%;
+    }
+
+    .b3 {
+        left: 8%;
+        bottom: 6%;
+        width: 84%;
+        height: 25%;
+    }
+    .b4 {
+        left: 8%;
+        top: 50%;
+        width: 86%;
+        height: 15%;
+    }
+    
+    .b5 {
+        display: none;
+    }
+
+    .b6 {
+        display: none;
+    }
+
+    .typo-top {
+        left: 12%;
+        gap: 2vw;
+    }
+
+    .word-top {
+        font-size: 12vw;
+    }
+
+    .px-f {
+        height: 10vw;
+        margin-right: 1.2vw;
+        transform: translateX(1vw);
+    }
+
+   .px-a {
+       height: 10vw;
+       margin-left: 1vw;
+       transform: translateX(-1vw);
+   }
+
+   .px-l {
+       height: 8vw;
+       margin-left: -1vw;
+       transform: translateY(-0.8vw) translateX(-1.6vw);
+   }
+    .tv-wrap {
+        width: 82vw;
+        top: 56%;
+    }
+    .start-btn {
+        width: 24vw;
+        height: 10vw;
+        font-size: 6vw;
+        border: 0.35vw solid #FFFFFF;
+        transform: translate(-1vw, -2vw);
+        padding-top: 0.8vw;
+    }
+    .tv-text {
+        font-size: 5.2vw;
+    }
+
+    .typo-bottom {
+        left: 50%;
+        bottom: 14%;
+        transform: translateX(-50%);
+        gap: 2vw;
+    }
+
+    .word-bottom {
+        font-size: 12vw;
+    }
+
+    .px-o {
+        height: 10.5vw;
+        transform: translateY(1vw);
+    }
+    .security {
+        min-height: 100vh;
+        align-items: flex-start;
+    }
+
+    .security-stage {
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+    }
+
+    /* черные блоки */
+    .security-bg-1 {
+        left: 0%;
+        top: 10%;
+        width: 100%;
+        height: 90%;
+    }
+
+    .security-bg-2 {
+        left: 50%;
+        top: 5%;
+        width: 70%;
+        height: 10%;
+    }
+
+    .security-bg-3 {
+        display: none;
+    }
+
+    .security-bg-4 {
+        display: none;
+    }
+
+    /* верхняя часть */
+    .security-header {
+        top: 8%;
+        left: 4%;
+        width: 94%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 3vw;
+    }
+
+    /* ОШИБКО */
+    .security-title {
+        gap: 1.2vw;
+        transform: translate(0, 4vw);
+    }
+
+    .security-o {
+        height: 18vw;
+        transform: translate(0, 1vw);
+    }
+
+    .security-word {
+        font-size: 20vw;
+    }
+
+    /* правая группа */
+    .security-side {
+        gap: 2vw;
+        transform: translate(0, 0);
+    }
+
+    .security-hash {
+        height: 27vw;
+    }
+
+    .security-one {
+        height: 27vw;
+        transform: translate(-1vw, -0.4vw);
+    }
+
+    .security-security {
+        font-size: 5vw;
+        padding: 0;
+        transform: translate(10vw, -37vw);
+    }
+
+    /* окно */
+    .security-window-wrap {
+        left: 50%;
+        top: 43%;
+        transform: translateX(-50%);
+        width: 88vw;
+    }
+
+    .security-window-content {
+        left: 7%;
+        top: 18%;
+        width: 86%;
+        height: 72%;
+    }
+
+    .security-window-text {
+        font-size: 4.2vw;
+        line-height: 0.95;
+    }
+
+    .security-start {
+        width: 18vw;
+        height: 7vw;
+        font-size: 4.8vw;
+    }
+    .typo-top {
+        top: 30%;
+    }
+    .typo-bottom {
+        bottom: 18%;
+    }
+
+    .mobile-controls {
+        position: absolute;
+        left: 50%;
+        bottom: 2vw;
+        transform: translateX(-50%);
+        justify-content: center;
+        z-index: 6;
+    }
+
+    .ctrl-row {
+        display: flex;
+        gap: 3vw;
+        transform: translateY(40%);
+    }
+
+    .ctrl-btn {
+        width: 16vw;
+        height: 16vw;
+        background: transparent;
+        border: 0.5vw solid #fff;
+        color: #fff;
+        font-family: "Basis33", sans-serif;
+        font-size: 8vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .lab-wrap {
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        width: 78vw;
+        height: 78vw;
+        transform: translate(-50%, -50%);
+    }
+
+    .lab-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: rotate(90deg);
+        transform-origin: center center;
+    }
+
+    .lab-pk,
+    .lab-sonic {
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .error-window {
+        width: 86vw;
+    }
+
+    .error-content {
+        width: 72vw;
+        height: 38vw;
+        top: 50%;
+        transform: translate(-50%, -42%);
+    }
+
+    .error-sonic {
+        left: 0;
+        top: 15vw;
+        width: 16vw;
+    }
+
+    .error-text {
+        left: 20vw;
+        top: 16vw;
+        width: 40vw;
+        font-size: 4.8vw;
+    }
+
+    .error-btn {
+        width: 22vw;
+        height: 10vw;
+        bottom: 1vw;
+        border: 0.3vw solid #101010;
+        font-size: 5vw;
+    }
+        .overload {
+            min-height: 100vh;
+            align-items: flex-start;
+        }
+    
+        .overload-stage {
+            width: 100vw;
+            height: 100vh;
+            aspect-ratio: auto;
+            overflow: hidden;
+        }
+    
+        /* верхняя черная плашка */
+        .overload-header {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+        }
+    
+        .overload-label {
+            left: 40%;
+            top: 0%;
+            width: 35%;
+            height: 8%;
+            font-size: 4.5vw;
+            padding-left: 3vw;
+            align-items: center;
+        }
+    
+        .overload-title {
+            left: 0%;
+            top: 2%;
+            gap: 0.5vw;
+            transform: none;
+            align-items: center;
+        }
+    
+        .overload-o-text {
+            font-size: 21vw;
+            line-height: 1;
+        }
+    
+        .overload-sh-wrap {
+            width: 24vw;
+            height: 32vw;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .overload-sh {
+            height: 14vw;
+        }
+    
+        .overload-word {
+            font-size: 21vw;
+            line-height: 1;
+        }
+    
+        .overload-side {
+            right: -2%;
+            top:18%;
+            width: 40%;
+            height: 15%;
+            padding: 3vw 3vw;
+            gap: 1vw;
+        }
+    
+        .overload-hash {
+            height: 18vw;
+        }
+    
+        .overload-two {
+            height: 18vw;
+            transform: translateX(-1.8vw) translateY(-0.2vw);
+        }
+    
+        /* окно старта */
+        .overload-window-wrap {
+            left: 50%;
+            top: 55%;
+            width: 88vw;
+            transform: translate(-50%, -50%);
+        }
+    
+        .overload-window-content {
+            left: 7%;
+            top: 18%;
+            width: 86%;
+            height: 72%;
+        }
+    
+        .overload-window-text {
+            font-size: 4.2vw;
+            line-height: 0.95;
+        }
+    
+        .overload-start {
+            width: 18vw;
+            height: 7vw;
+            font-size: 4.8vw;
+        }
+    
+        /* игра */
+        .overload-game {
+            inset: 0;
+            z-index: 6;
+        }
+    
+        .korzina {
+            width: 24vw;
+            top: 78%;
+        }
+    
+        .papka-fly {
+            width: 16vw;
+        }
+    
+        .papka-pile {
+            width: 16vw;
+        }
+    
+        /* попап */
+        .popup-window {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 84vw;
+            transform: translate(-50%, -50%);
+        }
+    
+        .popup-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 68vw;
+            height: 34vw;
+            transform: translate(-50%, -40%);
+        }
+    
+        .popup-papka {
+            left: 1vw;
+            top: 9vw;
+            width: 24vw;
+        }
+    
+        .popup-text {
+            left: 28vw;
+            top: 11vw;
+            font-size: 5vw;
+        }
+    
+        .popup-btn {
+            width: 20vw;
+            height: 7vw;
+            bottom: 5vw;
+            font-size: 5vw;
+            border: 0.3vw solid #000;
+        }
+        /* СЦЕНА */
+        .collection-stage {
+            height: 100vh;
+            aspect-ratio: auto;
+        }
+
+        /* ЗАГОЛОВОК */
+        .collection-title {
+            left: 4%;
+            top: 6%;
+        }
+
+        .collection-word-1,
+        .collection-word-2 {
+            font-size: 14vw;
+            /* было 10 → увеличили */
+        }
+
+        .collection-ia {
+            height: 12vw;
+        }
+
+        .collection-b {
+            height: 12vw;
+        }
+
+                .silhouette-fish {
+                    width: 18vw;
+                }
+        
+                /* ВСЕ ПОПАПЫ ОДНОГО РАЗМЕРА */
+                .fish-popup-window,
+                .fish-result-window,
+                .fish-result-window-big {
+                    width: 70vw;
+                }
+        
+                .fish-popup-content,
+                .fish-result-content,
+                .fish-result-content-big {
+                    width: 60vw;
+                    height: 28vw;
+                    transform: translate(-50%, -38%);
+                }
+        
+                .fish-popup-image {
+                    position: absolute;
+                    left: 3vw;
+                    top: 3vw;
+                    width: 12vw;
+                }
+        
+                .fish-popup-name {
+                    position: absolute;
+                    left: 18vw;
+                    top: 4vw;
+                    width: 30vw;
+                    font-size: 3.2vw;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+        
+                .fish-popup-buttons,
+                .fish-result-buttons,
+                .fish-result-buttons-big {
+                    position: absolute;
+                    left: 50%;
+                    bottom: 4vw;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 2vw;
+                }
+        
+                .fish-result-text,
+                .fish-result-text-big {
+                    left: 50%;
+                    top: 5vw;
+                    transform: translateX(-50%);
+                    width: 50vw;
+                    font-size: 3.8vw;
+                    line-height: 1.2;
+                    text-align: left;
+                }
+        
+                .fish-btn {
+                    min-width: 16vw;
+                    height: 6.5vw;
+                    font-size: 3.5vw;
+                    padding: 0 1vw;
+                }
+
+        /* ЧЕРНЫЕ БЛОКИ */
+
+        .collection-block-top-1 {
+            left: 0;
+            top: 4.5%;
+            width: 88%;
+            height: 94%;
+        }
+
+        .collection-block-top-2 {
+            right: 0;
+            top: 10%;
+            width: 50%;
+            height: 100%;
+        }
+
+
+        /* ЗАГОЛОВОК */
+
+        .collection-title {
+            left: 3.5%;
+            top: 6.3%;
+        }
+
+        .collection-line-1 {
+            margin-left: 0;
+            gap: 0.3vw;
+        }
+
+        .collection-line-2 {
+            gap: 0.3vw;
+            margin-left: 19%;
+            margin-top: 1.4vw;
+        }
+
+        .collection-word-1,
+        .collection-word-2 {
+            font-size: 13vw;
+            line-height: 1;
+        }
+
+        .collection-ia {
+            height: 11vw;
+            transform: translateY(0.35vw);
+        }
+
+        .collection-b {
+            height: 10.8vw;
+            transform: translateY(0.3vw);
+        }
+
+        /* ОКНО */
+
+        .collection-window-wrap {
+            left: 50%;
+            top:30%;
+            width: 86vw;
+            transform: translateX(-50%);
+        }
+
+        .collection-window-content {
+            left: 7%;
+            top: 18%;
+            width: 86%;
+            height: 72%;
+        }
+
+        .collection-window-text {
+            font-size: 3.6vw;
+            line-height: 1.02;
+        }
+
+        .collection-start {
+            width: 15vw;
+            height: 7.2vw;
+            font-size: 4.7vw;
+        }
+}
+@media (max-width: 360px) {
+    .typo-top {
+            top: 34%;
+        }
+
+    .typo-bottom {
+        bottom: 21%;
+    }
+    
+    .lab-wrap {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    
+}
+
