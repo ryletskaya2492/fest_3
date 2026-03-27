@@ -1263,15 +1263,11 @@ body {
     aspect-ratio: 1440 / 900;
 }
 
-/* ОБЩИЙ ХЕДЕР */
-
 .registration-header {
     position: absolute;
     inset: 0;
     z-index: 3;
 }
-
-/* ЛЕВАЯ ЧАСТЬ: РЕГ + И */
 
 .registration-left {
     position: absolute;
@@ -1306,7 +1302,6 @@ body {
     display: block;
 }
 
-/* ЦЕНТР: СТР */
 
 .registration-center {
     position: absolute;
@@ -1321,8 +1316,6 @@ body {
     font-weight: 400;
     line-height: 1;
 }
-
-/* ПРАВАЯ ЧАСТЬ: АЦ + ИЯ */
 
 .registration-right {
     position: absolute;
@@ -1366,8 +1359,6 @@ body {
     margin-left: 1vw;
     margin-top: 4vw;
 }
-
-/* ОКНО — КАК В ДРУГИХ БЛОКАХ */
 
 .registration-window-wrap {
     position: absolute;
@@ -1427,8 +1418,6 @@ body {
 .registration-btn-long {
     width: 14vw;
 }
-
-/* СЛОЙ ДЛЯ БЕЛЫХ МИГАЮЩИХ ЛИНИЙ */
 
 .registration-noise-layer {
     position: absolute;
