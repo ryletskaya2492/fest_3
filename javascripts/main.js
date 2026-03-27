@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   startBlueNoise('#overloadNoiseLayer')
   initOverloadGame()
   startNoise('#collectionNoiseLayer')
+  initCollectionGame()
+  startNoise('#collectionNoiseLayer')
 })
 
 function startNoise(layerId) {
@@ -909,14 +911,18 @@ function resetOverloadGame() {
 }
 
 // ИГРА РЫБЫ
-// ===== ИГРА КОЛЛЕКЦИЯ =====
-
+// состояние начала игры
 let collectionStarted = false
+// состосние попапа
 let collectionPopupOpen = false
+// рыба хранится тут
 let selectedFishElement = null
+// имя рыбы сюда записываем
 let selectedFishName = ''
+// таймер движения рыбы
 let fishMoveTimer = null
 
+// массив рыыыыыыыыб
 let fishList = [
   'fish_dog',
   'fish_hat',
@@ -927,11 +933,6 @@ let fishList = [
   'fish_sneakers',
   'fish_trash'
 ]
-
-document.addEventListener('DOMContentLoaded', () => {
-  initCollectionGame()
-  startNoise('#collectionNoiseLayer')
-})
 
 function initCollectionGame() {
   let startBtn = document.querySelector('#collectionStartBtn')
@@ -956,6 +957,7 @@ function initCollectionGame() {
     wtfBtn.addEventListener('click', rejectFish)
   }
 
+  // каждая кнопка в результирующем попапе, сбрасывает игру
   resetBtns.forEach((button) => {
     button.addEventListener('click', resetCollectionGame)
   })
@@ -966,8 +968,11 @@ function startCollectionGame() {
   let game = document.querySelector('#collectionGame')
   let fishLayer = document.querySelector('#fishLayer')
   let popup = document.querySelector('#fishPopup')
+  // правильное отклонение
   let goodPopup = document.querySelector('#fishGoodPopup')
+  // плохое отклонение (приняли мусорную рыбу)
   let badPopup = document.querySelector('#fishBadPopup')
+  // отклонили нормальную рыбу
   let wrongFishPopup = document.querySelector('#fishWrongFishPopup')
 
   if (windowWrap) {
@@ -978,26 +983,12 @@ function startCollectionGame() {
     game.classList.add('show')
   }
 
-  if (fishLayer) {
-    fishLayer.innerHTML = ''
-  }
-
   if (popup) {
     popup.classList.remove('show')
   }
 
-  if (goodPopup) {
-    goodPopup.classList.remove('show')
-  }
 
-  if (badPopup) {
-    badPopup.classList.remove('show')
-  }
-
-  if (wrongFishPopup) {
-    wrongFishPopup.classList.remove('show')
-  }
-
+// игра началась, но попап еще не открыт
   collectionStarted = true
   collectionPopupOpen = false
   selectedFishElement = null
@@ -1010,12 +1001,9 @@ function startCollectionGame() {
 function createStartFish() {
   let fishLayer = document.querySelector('#fishLayer')
 
-  if (!fishLayer) {
-    return
-  }
-
   fishLayer.innerHTML = ''
 
+  // вертикаль/горизонталь/ + скорость вправо, если - влево
   fishLayer.append(createOneFish('fish_dog', 18, 38, 0.22))
   fishLayer.append(createOneFish('fish_hat', 8, 68, 0.18))
   fishLayer.append(createOneFish('fish_normal', 34, 52, 0.2))
@@ -1026,19 +1014,25 @@ function createStartFish() {
   fishLayer.append(createOneFish('fish_trash', 78, 72, -0.24))
 }
 
+// создаем рыбо
 function createOneFish(name, left, top, speed) {
+  // новый тег + даем имя
   let fish = document.createElement('img')
-
+// создаю картинку силуэта рыбы
   fish.src = getFishSilhouetteSrc(name)
+  // даем класс, чтобы стили применились
   fish.className = 'silhouette-fish'
+  // на экран помещаем, координаты в %
   fish.style.left = left + '%'
   fish.style.top = top + '%'
 
+  // использую dataset, чтобы хранить данные прямо внутри html
   fish.dataset.name = name
   fish.dataset.left = left
   fish.dataset.top = top
   fish.dataset.speed = speed
 
+  // открываем попап этой рыбы по клику просто 
   fish.addEventListener('click', () => {
     openFishPopup(fish)
   })
@@ -1046,9 +1040,11 @@ function createOneFish(name, left, top, speed) {
   return fish
 }
 
+// начинаем движение
 function startFishMovement() {
   clearInterval(fishMoveTimer)
 
+  // каждые 20 секунд
   fishMoveTimer = setInterval(() => {
     moveAllFish()
   }, 20)
@@ -1059,6 +1055,7 @@ function moveAllFish() {
     return
   }
 
+// чтобы не двигались, пока попап открыт, паузим типа
   if (collectionPopupOpen == true) {
     return
   }
@@ -1071,14 +1068,17 @@ function moveAllFish() {
 
     left = left + speed
 
+    // ксли рыба плывет вправо и уже уплыла слишком далеко, переносим ее за левый край
     if (speed > 0 && left > 110) {
       left = -25
     }
 
+    // и наоборот направо
     if (speed < 0 && left < -30) {
       left = 110
     }
 
+    // обновляем позицию
     fish.dataset.left = left
     fish.style.left = left + '%'
   })
@@ -1089,10 +1089,7 @@ function openFishPopup(fish) {
   let popupImage = document.querySelector('#fishPopupImage')
   let popupName = document.querySelector('#fishPopupName')
 
-  if (!popup || !popupImage || !popupName) {
-    return
-  }
-
+  // запоминаем рыбу и ее имя
   collectionPopupOpen = true
   selectedFishElement = fish
   selectedFishName = fish.dataset.name
@@ -1120,6 +1117,7 @@ function acceptFish() {
     return
   }
 
+  // если норм рыба принята, то просто ее убираем с экрана и игра продолжается
   if (selectedFishElement) {
     selectedFishElement.remove()
     selectedFishElement = null
@@ -1157,15 +1155,21 @@ function spawnReplacementFish() {
     return
   }
 
-  let randomIndex = Math.floor(Math.random() * fishList.length)
-  let name = fishList[randomIndex]
+  let name = selectedFishName  
+
+  // случайное расположение рыбы
 
   let top = 35 + Math.random() * 35
   let fromLeft = Math.random() > 0.5
-
   let left = 0
   let speed = 0
 
+// если рыба появляется слева
+// ставим ее за левый край
+// даем + скорость
+
+// если справа ставим за правый край
+// даем - скорость
   if (fromLeft) {
     left = -20
     speed = 0.18 + Math.random() * 0.12
@@ -1174,18 +1178,18 @@ function spawnReplacementFish() {
     speed = -(0.18 + Math.random() * 0.12)
   }
 
+  // добавляем на экран (возвращаем типо)
   fishLayer.append(createOneFish(name, left, top, speed))
 }
 
+
+// ищет силуэт оч удобно
 function getFishSilhouetteSrc(name) {
   return 'images/' + name + '_silhouette.png'
 }
 
+// ищет обычную картинку
 function getFishImageSrc(name) {
-  if (name == 'fish_hat') {
-    return 'images/fish_hat.png.png'
-  }
-
   return 'images/' + name + '.png'
 }
 

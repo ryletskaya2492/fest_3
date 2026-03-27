@@ -1087,7 +1087,7 @@ body {
     cursor: pointer;
 }
 
-/* СЛОЙ ДЛЯ БЕЛЫХ МИГАЮЩИХ ЛИНИЙ */
+/* для линий */
 
 .collection-noise-layer {
     position: absolute;
@@ -1246,6 +1246,191 @@ body {
 }
 
 .collection-noise-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.registration {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.registration-stage {
+    position: relative;
+    width: 100vw;
+    aspect-ratio: 1440 / 900;
+}
+
+/* ОБЩИЙ ХЕДЕР */
+
+.registration-header {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+/* ЛЕВАЯ ЧАСТЬ: РЕГ + И */
+
+.registration-left {
+    position: absolute;
+    left: 1.8%;
+    top: -5%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.registration-label {
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 9vw;
+    font-weight: 400;
+    line-height: 1;
+    margin-top: 0.8vw;
+}
+
+.registration-small-blue {
+    width: 9.5vw;
+    height: 16vw;
+    background: #0200CD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1vw;
+}
+
+.registration-ii {
+    width: auto;
+    height: 8vw;
+    display: block;
+}
+
+/* ЦЕНТР: СТР */
+
+.registration-center {
+    position: absolute;
+    left: 30.5%;
+    top: -10%;
+}
+
+.registration-title-main {
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 10vw;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* ПРАВАЯ ЧАСТЬ: АЦ + ИЯ */
+
+.registration-right {
+    position: absolute;
+    left: 53%;
+    top: -10%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.registration-big-blue {
+    width: 24vw;
+    height: 40vw;
+    background: #0200CD;
+    position: relative;
+}
+
+.registration-a {
+    position: absolute;
+    left: 1.6vw;
+    top: 3.8vw;
+    width: auto;
+    height: 10vw;
+    display: block;
+}
+
+.registration-cc {
+    position: absolute;
+    left: 14vw;
+    top: 4vw;
+    width: auto;
+    height: 11vw;
+    display: block;
+}
+
+.registration-last-letter {
+    color: #0200CD;
+    font-family: "Inter", sans-serif;
+    font-size: 10vw;
+    font-weight: 400;
+    line-height: 1;
+    margin-left: 1vw;
+    margin-top: 4vw;
+}
+
+/* ОКНО — КАК В ДРУГИХ БЛОКАХ */
+
+.registration-window-wrap {
+    position: absolute;
+    left: 2%;
+    top: 25%;
+    width: 45vw;
+    z-index: 4;
+}
+
+.registration-window {
+    width: 100%;
+    display: block;
+}
+
+.registration-window-content {
+    position: absolute;
+    left: 6.8%;
+    top: 18%;
+    width: 86%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.registration-window-text {
+    color: #000;
+    font-family: "Basis33", sans-serif;
+    font-size: 1.95vw;
+    font-weight: 400;
+    line-height: 1.05;
+}
+
+.registration-buttons {
+    display: flex;
+    gap: 1.6vw;
+    align-items: center;
+}
+
+.registration-btn {
+    background: #fff;
+    border: 0.14vw solid #000;
+    color: #000;
+    font-family: "Basis33", sans-serif;
+    font-size: 2.3vw;
+    cursor: pointer;
+    height: 3.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration-btn-short {
+    width: 7vw;
+}
+
+.registration-btn-long {
+    width: 14vw;
+}
+
+/* СЛОЙ ДЛЯ БЕЛЫХ МИГАЮЩИХ ЛИНИЙ */
+
+.registration-noise-layer {
     position: absolute;
     inset: 0;
     pointer-events: none;

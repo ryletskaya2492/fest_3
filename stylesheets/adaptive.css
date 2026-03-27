@@ -531,7 +531,6 @@
         .collection-word-1,
         .collection-word-2 {
             font-size: 14vw;
-            /* было 10 → увеличили */
         }
 
         .collection-ia {
@@ -542,71 +541,70 @@
             height: 12vw;
         }
 
-                .silhouette-fish {
-                    width: 18vw;
-                }
-        
-                /* ВСЕ ПОПАПЫ ОДНОГО РАЗМЕРА */
-                .fish-popup-window,
-                .fish-result-window,
-                .fish-result-window-big {
-                    width: 70vw;
-                }
-        
-                .fish-popup-content,
-                .fish-result-content,
-                .fish-result-content-big {
-                    width: 60vw;
-                    height: 28vw;
-                    transform: translate(-50%, -38%);
-                }
-        
-                .fish-popup-image {
-                    position: absolute;
-                    left: 3vw;
-                    top: 3vw;
-                    width: 12vw;
-                }
-        
-                .fish-popup-name {
-                    position: absolute;
-                    left: 18vw;
-                    top: 4vw;
-                    width: 30vw;
-                    font-size: 3.2vw;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-        
-                .fish-popup-buttons,
-                .fish-result-buttons,
-                .fish-result-buttons-big {
-                    position: absolute;
-                    left: 50%;
-                    bottom: 4vw;
-                    transform: translateX(-50%);
-                    display: flex;
-                    gap: 2vw;
-                }
-        
-                .fish-result-text,
-                .fish-result-text-big {
-                    left: 50%;
-                    top: 5vw;
-                    transform: translateX(-50%);
-                    width: 50vw;
-                    font-size: 3.8vw;
-                    line-height: 1.2;
-                    text-align: left;
-                }
-        
-                .fish-btn {
-                    min-width: 16vw;
-                    height: 6.5vw;
-                    font-size: 3.5vw;
-                    padding: 0 1vw;
-                }
+        .silhouette-fish {
+            width: 18vw;
+        }
+
+        .fish-popup-window,
+        .fish-result-window,
+        .fish-result-window-big {
+            width: 70vw;
+        }
+
+        .fish-popup-content,
+        .fish-result-content,
+        .fish-result-content-big {
+            width: 60vw;
+            height: 28vw;
+            transform: translate(-50%, -38%);
+        }
+
+        .fish-popup-image {
+            position: absolute;
+            left: 3vw;
+            top: 3vw;
+            width: 12vw;
+        }
+
+        .fish-popup-name {
+            position: absolute;
+            left: 18vw;
+            top: 4vw;
+            width: 30vw;
+            font-size: 3.2vw;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fish-popup-buttons,
+        .fish-result-buttons,
+        .fish-result-buttons-big {
+            position: absolute;
+            left: 50%;
+            bottom: 4vw;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2vw;
+        }
+
+        .fish-result-text,
+        .fish-result-text-big {
+            left: 50%;
+            top: 5vw;
+            transform: translateX(-50%);
+            width: 50vw;
+            font-size: 3.8vw;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .fish-btn {
+            min-width: 16vw;
+            height: 6.5vw;
+            font-size: 3.5vw;
+            padding: 0 1vw;
+        }
 
         /* ЧЕРНЫЕ БЛОКИ */
 
@@ -623,9 +621,6 @@
             width: 50%;
             height: 100%;
         }
-
-
-        /* ЗАГОЛОВОК */
 
         .collection-title {
             left: 3.5%;
