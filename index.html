@@ -7,8 +7,8 @@
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;700&display=swap"
         rel="stylesheet">
     <script src="javascripts/main.js"></script>
-    <link rel="icon" href="" type="image/png" />
-    <link rel="icon" href="" type="image/svg" />
+    <link rel="icon" href="images/ribo.png" type="image/png" />
+    <link rel="icon" href="images/ribo.svg" type="image/svg" />
     <meta property="og:title" content="Фестиваль цифровых ошибок" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Веб-плакат о цифровых ошибках" />
@@ -17,8 +17,9 @@
 </head>
 <body>
     <main>
-        <section class="hero">
-            <div class="stage">
+        <!-- ПЕРВЫЙ ЭКРАН -->
+        <section>
+            <div class="screen">
                 <!-- синие блоки -->
                 <div class="block b1"></div>
                 <div class="block b2"></div>
@@ -26,7 +27,7 @@
                 <div class="block b4"></div>
                 <div class="block b5"></div>
                 <div class="block b6"></div>
-                <div class="noise-layer" id="noiseLayerHero"></div>
+                <div class="noise-layer" id="noiseLayerFirst"></div>
                 <!-- типографика -->
                 <div class="typo">
                     <div class="typo-top">
@@ -57,9 +58,9 @@
             </div>
         </section>
 
-        <section class="security">
-            <div class="security-stage">
-        
+        <!-- БЛОК С СОНИКОМ -->
+        <section>
+            <div class="security-screen">
                 <div class="security-bg security-bg-1"></div>
                 <div class="security-bg security-bg-2"></div>
                 <div class="security-bg security-bg-3"></div>
@@ -73,7 +74,7 @@
                         <div class="security-word">ШИБКО</div>
                     </div>
         
-                    <div class="security-side">
+                    <div class="security-right">
                         <img src="images/hash.svg" class="security-hash" alt="">
                         <img src="images/1.svg" class="security-one" alt="">
                         <div class="security-security">БЕЗОПАСНОСТЬ</div>
@@ -105,274 +106,308 @@
         
                 <!-- экран игры -->
                 <div class="game-screen" id="gameScreen">
+                    <!-- область лабиринта -->
                     <div class="lab-wrap" id="labWrap">
                         <img src="images/lab_p.svg" class="lab-image" alt="labyrinth">
-        
                         <img src="images/pk.svg" class="lab-pk" id="labPk" alt="computer">
                         <img src="images/son_r.svg" class="lab-sonic" id="labSonic" alt="sonic">
                     </div>
                 </div>
         
-                <!-- popup проигрыша -->
+                <!-- попап проигрыша -->
                 <div class="error-popup" id="errorPopup">
                     <img src="images/win_small.svg" class="error-window" alt="error window">
-        
+
+                    <!-- контент внутри попапа -->
                     <div class="error-content">
                         <img src="images/son.svg" class="error-sonic" alt="sonic">
                         <div class="error-text">Соник атакует Ваш компьютер!</div>
                         <button class="error-btn" id="errorBtn">втф</button>
                     </div>
                 </div>
+                <!-- кнопки движения для мобильного и планшета -->
             <div class="mobile-controls" id="mobileControls">
                 <div class="ctrl-row">
                     <button class="ctrl-btn" id="btnLeft">←</button>
                     <button class="ctrl-btn" id="btnRight">→</button>
                 </div>
             </div>
-            </div>
-        </section>
-        
-            </div>
         </section>
 
-<section class="overload">
-    <div class="overload-stage">
-        <!-- заголовок -->
-        <div class="overload-header">
-
-            <div class="overload-label">
-                ПЕРЕГРУЗКА
-            </div>
-
-            <div class="overload-title">
-                <span class="overload-o-text">О</span>
-                <div class="overload-sh-wrap">
-                    <img src="images/sh.svg" class="overload-sh" alt="">
-                </div>
-                <div class="overload-word">ИБКО</div>
-            </div>
-
-            <div class="overload-side">
-                <img src="images/hash.svg" class="overload-hash" alt="">
-                <img src="images/2.svg" class="overload-two" alt="">
-            </div>
-
-        </div>
-
-        <!-- окно -->
-        <div class="overload-window-wrap">
-            <img src="images/window.svg" class="overload-window" alt="window">
-
-            <div class="overload-window-content">
-                <div class="overload-window-text">
-                    Система перегружена!<br><br>
-
-                    Ловите папки с помощью мыши, перемещая<br>
-                    корзину, чтобы избежать перегрузки.<br><br>
-
-                    Не упустите ни одной!
+  
+    <!-- БЛОК С ПАПКАМ -->
+    <section>
+        <div class="overload-screen">
+            <div class="overload-header">
+                <div class="overload-label">
+                    ПЕРЕГРУЗКА
                 </div>
 
-                <button class="overload-start" id="overloadStartBtn">
-                    старт
-                </button>
+                <div class="overload-title">
+                    <span class="overload-o-text">О</span>
+                    <div class="overload-sh-wrap">
+                        <img src="images/sh.svg" class="overload-sh" alt="">
+                    </div>
+                    <div class="overload-word">ИБКО</div>
+                </div>
+
+                <div class="overload-right">
+                    <img src="images/hash.svg" class="overload-hash" alt="">
+                    <img src="images/2.svg" class="overload-two" alt="">
+                </div>
+
             </div>
+
+            <!-- окно -->
+            <div class="overload-window-wrap">
+                <img src="images/window.svg" class="overload-window" alt="window">
+
+                <div class="overload-window-content">
+                    <div class="overload-window-text">
+                        Система перегружена!<br><br>
+
+                        Ловите папки с помощью мыши, перемещая<br>
+                        корзину, чтобы избежать перегрузки.<br><br>
+
+                        Не упустите ни одной!
+                    </div>
+
+                    <button class="overload-start" id="overloadStartBtn">
+                        старт
+                    </button>
+                </div>
+            </div>
+
+            <!-- ИГРА -->
+            <div class="overload-game" id="overloadGame">
+                <div class="folders-layer" id="foldersLayer"></div>
+                <div class="pile-layer" id="pileLayer"></div>
+
+                <img src="images/kor.png" class="korzina" id="korzina" alt="корзина">
+                    <div class="overload-popup" id="overloadPopup">
+                        <img src="images/win_small.svg" class="popup-window" alt="error">
+                    
+                        <div class="popup-content">
+                            <img src="images/papka.png" class="popup-papka" alt="">
+                            <div class="popup-text">Overload</div>
+                            <button class="popup-btn" id="popupBtn">HELP</button>
+                        </div>
+                    </div>
+            </div>
+            <!-- для линий -->
+            <div class="overload-noise-layer" id="overloadNoiseLayer"></div>
         </div>
+    </section>
 
-        <!-- ИГРА ПЕРЕГРУЗКА -->
-        <div class="overload-game" id="overloadGame">
-            <div class="folders-layer" id="foldersLayer"></div>
-            <div class="pile-layer" id="pileLayer"></div>
 
-            <img src="images/kor.png" class="korzina" id="korzina" alt="корзина">
-                <div class="overload-popup" id="overloadPopup">
-                    <img src="images/win_small.svg" class="popup-window" alt="error">
-                
-                    <div class="popup-content">
-                        <img src="images/papka.png" class="popup-papka" alt="">
-                        <div class="popup-text">Overload</div>
-                        <button class="popup-btn" id="popupBtn">HELP</button>
+    <!-- БЛОК С РЫБАМИ -->
+    <section>
+        <div class="collection-screen">
+
+            <!-- черные блоки -->
+            <div class="collection-block collection-block-top-1"></div>
+            <div class="collection-block collection-block-top-2"></div>
+            <div class="collection-block collection-block-bottom-2"></div>
+            <div class="collection-block collection-block-bottom-3"></div>
+
+            <!-- заголовок -->
+            <div class="collection-title">
+                <div class="collection-line collection-line-1">
+                    <div class="collection-word collection-word-1">КОЛЛЕКЦИ</div>
+                    <img src="images/ia.svg" class="collection-ia" alt="">
+                </div>
+
+                <div class="collection-line collection-line-2">
+                    <div class="collection-word collection-word-2">ОШИ</div>
+                    <img src="images/b.svg" class="collection-b" alt="">
+                    <div class="collection-word collection-word-2">КОВ</div>
+                </div>
+            </div>
+
+            <!-- окно -->
+            <div class="collection-window-wrap">
+                <img src="images/window.svg" class="collection-window" alt="window">
+
+                <div class="collection-window-content">
+                    <div class="collection-window-text">
+                        Система не смогла корректно распознать объекты.<br>
+                        Обнаружены рыбоподобные силуэты.<br>
+                        <br>
+                        В систему затесалась рыба-вирус.<br>
+                        <br>
+                        Принимайте рыб.<br>
+                        Не рыбу — отклоняйте.<br>
+                    </div>
+
+                    <button class="collection-start" id="collectionStartBtn">
+                        старт
+                    </button>
+                </div>
+            </div>
+
+            <!-- слой с игрой -->
+            <div class="collection-game" id="collectionGame">
+                <div class="fish-layer" id="fishLayer"></div>
+            </div>
+
+            <!-- попап выбора -->
+            <div class="fish-popup" id="fishPopup">
+                <img src="images/win_small.svg" class="fish-popup-window" alt="popup">
+
+                <div class="fish-popup-content">
+                    <img src="" class="fish-popup-image" id="fishPopupImage" alt="">
+                    <div class="fish-popup-name" id="fishPopupName"></div>
+
+                    <div class="fish-popup-buttons">
+                        <button class="fish-btn" id="fishOkBtn1">ok</button>
+                        <button class="fish-btn" id="fishOkBtn2">ok</button>
+                        <button class="fish-btn" id="fishWtfBtn">WTF</button>
                     </div>
                 </div>
-        </div>
-
-        <div class="overload-noise-layer" id="overloadNoiseLayer"></div>
-    </div>
-</section>
-<section class="collection">
-    <div class="collection-stage">
-
-        <!-- черные блоки -->
-        <div class="collection-block collection-block-top-1"></div>
-        <div class="collection-block collection-block-top-2"></div>
-        <div class="collection-block collection-block-bottom-2"></div>
-        <div class="collection-block collection-block-bottom-3"></div>
-
-        <!-- заголовок -->
-        <div class="collection-title">
-            <div class="collection-line collection-line-1">
-                <div class="collection-word collection-word-1">КОЛЛЕКЦИ</div>
-                <img src="images/ia.svg" class="collection-ia" alt="">
             </div>
 
-            <div class="collection-line collection-line-2">
-                <div class="collection-word collection-word-2">ОШИ</div>
-                <img src="images/b.svg" class="collection-b" alt="">
-                <div class="collection-word collection-word-2">КОВ</div>
-            </div>
-        </div>
+            <!-- попап правильного отклонения -->
+            <div class="fish-result-popup" id="fishGoodPopup">
+                <img src="images/win_small.svg" class="fish-result-window" alt="popup">
 
-        <!-- окно инструкции -->
-        <div class="collection-window-wrap">
-            <img src="images/window.svg" class="collection-window" alt="window">
+                <div class="fish-result-content">
+                    <div class="fish-result-text">
+                        Объект отклонен успешно.<br>
+                        Это была не рыба.
+                    </div>
 
-            <div class="collection-window-content">
-                <div class="collection-window-text">
-                    Система не смогла корректно распознать объекты.<br>
-                    Обнаружены рыбоподобные силуэты.<br>
-                    <br>
-                    В систему затесалась рыба-вирус.<br>
-                     <br>
-                    Принимайте рыб.<br>
-                    Не рыбу — отклоняйте.<br>
-                </div>
-
-                <button class="collection-start" id="collectionStartBtn">
-                    старт
-                </button>
-            </div>
-        </div>
-
-        <!-- слой с игрой -->
-        <div class="collection-game" id="collectionGame">
-            <div class="fish-layer" id="fishLayer"></div>
-        </div>
-
-        <!-- popup выбора -->
-        <div class="fish-popup" id="fishPopup">
-            <img src="images/win_small.svg" class="fish-popup-window" alt="popup">
-
-            <div class="fish-popup-content">
-                <img src="" class="fish-popup-image" id="fishPopupImage" alt="">
-                <div class="fish-popup-name" id="fishPopupName"></div>
-
-                <div class="fish-popup-buttons">
-                    <button class="fish-btn" id="fishOkBtn1">ok</button>
-                    <button class="fish-btn" id="fishOkBtn2">ok</button>
-                    <button class="fish-btn" id="fishWtfBtn">WTF</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- popup правильного отклонения -->
-        <div class="fish-result-popup" id="fishGoodPopup">
-            <img src="images/win_small.svg" class="fish-result-window" alt="popup">
-
-            <div class="fish-result-content">
-                <div class="fish-result-text">
-                    Объект отклонен успешно.<br>
-                    Это была не рыба.
-                </div>
-
-                <div class="fish-result-buttons">
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">о нет</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- popup ошибки -->
-        <div class="fish-result-popup" id="fishBadPopup">
-            <img src="images/win_small.svg" class="fish-result-window fish-result-window-big" alt="popup">
-
-            <div class="fish-result-content fish-result-content-big">
-                <div class="fish-result-text fish-result-text-big">
-                    Это была не рыбо!
-                    Она съела всю коллекцию.
-                    Начинайте заново.
-                </div>
-
-                <div class="fish-result-buttons fish-result-buttons-big">
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">fuck</button>
-                </div>
-            </div>
-        </div>
-        <div class="fish-result-popup" id="fishWrongFishPopup">
-            <img src="images/win_small.svg" class="fish-result-window fish-result-window-big" alt="popup">
-        
-            <div class="fish-result-content fish-result-content-big">
-                <div class="fish-result-text fish-result-text-big">
-                    Это была рыба.
-                    Вы сами вызвали ошибку.
-                    Больше не играете.
-                </div>
-        
-                <div class="fish-result-buttons fish-result-buttons-big">
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">ok</button>
-                    <button class="fish-btn fish-reset-btn">о нет!</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- белые полосы -->
-        <div class="collection-noise-layer" id="collectionNoiseLayer"></div>
-
-    </div>
-</section>
-<section class="registration">
-    <div class="registration-stage">
-
-        <div class="registration-header">
-            <div class="registration-left">
-                <div class="registration-label">РЕГ</div>
-
-                <div class="registration-small-blue">
-                    <img src="images/ii.svg" class="registration-ii" alt="">
+                    <div class="fish-result-buttons">
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">о нет</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="registration-center">
-                <div class="registration-title-main">СТР</div>
-            </div>
+            <!-- попап ошибки -->
+            <div class="fish-result-popup" id="fishBadPopup">
+                <img src="images/win_small.svg" class="fish-result-window fish-result-window-big" alt="popup">
 
-            <div class="registration-right">
-                <div class="registration-big-blue">
-                    <img src="images/a.svg" class="registration-a" alt="">
-                    <img src="images/cc.svg" class="registration-cc" alt="">
-                </div>
+                <div class="fish-result-content fish-result-content-big">
+                    <div class="fish-result-text fish-result-text-big">
+                        Это была не рыбо!
+                        Она съела всю коллекцию.
+                        Начинайте заново.
+                    </div>
 
-                <div class="registration-last-letter">ИЯ</div>
-            </div>
-        </div>
-
-        <div class="registration-window-wrap">
-            ...
-        </div>
-
-        <div class="registration-line registration-line-1"></div>
-        <div class="registration-line registration-line-2"></div>
-        <div class="registration-window-wrap">
-            <img src="images/window.svg" class="registration-window" alt="window">
-        
-            <div class="registration-window-content">
-                <div class="registration-window-text">
-                    Хотите присоединиться<br>
-                    к фестивалю ошибок?
-                </div>
-        
-                <div class="registration-buttons">
-                    <button class="registration-btn registration-btn-short">ес</button>
-                    <button class="registration-btn registration-btn-long">конечно ес</button>
+                    <div class="fish-result-buttons fish-result-buttons-big">
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">fuck</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="registration-noise-layer" id="registrationNoiseLayer"></div>
-    </div>
+            <div class="fish-result-popup" id="fishWrongFishPopup">
+                <img src="images/win_small.svg" class="fish-result-window fish-result-window-big" alt="popup">
+            
+                <div class="fish-result-content fish-result-content-big">
+                    <div class="fish-result-text fish-result-text-big">
+                        Это была рыба.
+                        Вы сами вызвали ошибку.
+                        Больше не играете.
+                    </div>
+            
+                    <div class="fish-result-buttons fish-result-buttons-big">
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">ok</button>
+                        <button class="fish-btn fish-reset-btn">о нет!</button>
+                    </div>
+                </div>
+            </div>
 
-</section>
+            <!-- для линий -->
+            <div class="collection-noise-layer" id="collectionNoiseLayer"></div>
+        </div>
+    </section>
+
+    <!-- БЛОК С РЕГИСТРАЦИЕЙ -->
+    <section class="registration">
+        <div class="registration-screen">
+
+            <div class="registration-header">
+                <div class="registration-left">
+                    <div class="registration-label">РЕГ</div>
+
+                    <div class="registration-small-blue">
+                        <img src="images/ii.svg" class="registration-ii" alt="">
+                    </div>
+                </div>
+
+                <div class="registration-center">
+                    <div class="registration-title-main">СТР</div>
+                </div>
+
+                <div class="registration-right">
+                    <div class="registration-big-blue">
+                        <img src="images/a.svg" class="registration-a" alt="">
+                        <img src="images/cc.svg" class="registration-cc" alt="">
+                    </div>
+
+                    <div class="registration-last-letter">ИЯ</div>
+                </div>
+            </div>
+
+            <div class="registration-line registration-line-1"></div>
+            <div class="registration-line registration-line-2"></div>
+
+            <div class="registration-window-wrap" id="registrationWindowWrap">
+                <img src="images/window.svg" class="registration-window" alt="window">
+
+                <div class="registration-window-content">
+                    <div class="registration-window-text">
+                        Хотите присоединиться<br>
+                        к фестивалю ошибок?
+                    </div>
+
+                    <div class="registration-buttons">
+                        <button class="registration-btn registration-btn-short registration-open-btn">ес</button>
+                        <button class="registration-btn registration-btn-long registration-open-btn">конечно ес</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="registration-runaway-btn" id="registrationRunawayBtn">
+                зарегестрироваться
+            </button>
+
+            <div class="registration-noise-layer" id="registrationNoiseLayer"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-screen">
+    
+            <!-- черные блоки -->
+            <div class="footer-block footer-block-left"></div>
+            <div class="footer-block footer-block-right"></div>
+    
+            <!-- текст слева -->
+            <div class="footer-left">
+                <div class="footer-line">
+                    <span class="footer-text">студент: анн</span>
+                    <img src="images/o.svg" class="footer-o footer-o-white" alt="">
+                    <span class="footer-text">рылецкая</span>
+                </div>
+    
+                <div class="footer-line footer-line-second">
+                    <span class="footer-text">групп</span>
+                    <img src="images/o.svg" class="footer-o footer-o-white" alt="">
+                    <span class="footer-text">: Б25Д310</span>
+                </div>
+            </div>
+    
+            <!-- текст справа -->
+            <div class="footer-right">
+                <span class="footer-text">куратор: камил</span>
+                <img src="images/o.svg" class="footer-o footer-o-black" alt="">
+                <span class="footer-text">рихтер</span>
+            </div>
+        </div>
+    </footer>
 </main>
-<body>
+</body>

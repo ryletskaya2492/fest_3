@@ -1,4 +1,4 @@
-@keyframes tvFlicker {
+@keyframes Flicker {
     0% {
         opacity: 0;
     }
@@ -16,7 +16,7 @@
     }
 }
 
-@keyframes tvFlicker2 {
+@keyframes Flicker2 {
     0% {
         opacity: 0;
     }

@@ -8,7 +8,7 @@
 
 * {
     box-sizing: border-box;
-    
+
 }
 
 body {
@@ -16,15 +16,8 @@ body {
     background: #EEEEFF;
     font-family: "Inter", sans-serif;
 }
-
-.hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* весь блок */
-.stage {
+.screen {
     position: relative;
     width: 100vw;
     aspect-ratio: 1440 / 900;
@@ -35,6 +28,7 @@ body {
 .block {
     position: absolute;
     background: #0200CD;
+    z-index: 1;
 }
 
 .b1 {
@@ -83,7 +77,6 @@ body {
 .typo {
     position: absolute;
     inset: 0;
-    pointer-events: none;
 }
 
 .typo-top {
@@ -96,7 +89,6 @@ body {
 }
 
 .word {
-    font-family: "Inter", sans-serif;
     font-weight: 300;
     line-height: 1;
 }
@@ -139,11 +131,6 @@ body {
     display: flex;
     align-items: baseline;
     gap: 1.25vw;
-    .noise-layer {
-    position: absolute;
-    inset: 0;
-}
-
 }
 
 .px-o {
@@ -209,7 +196,7 @@ body {
     height: 0.486vw;
     background: rgba(255, 255, 255, 0.9);
     opacity: 0;
-    animation: tvFlicker 0.3s steps(2) infinite;
+    animation: Flicker 0.3s steps(2) infinite;
 }
 
 .noise-subline {
@@ -217,49 +204,19 @@ body {
     height: 0.0694vw;
     background: rgba(255, 255, 255, 0.85);
     opacity: 0;
-    animation: tvFlicker2 0.4s steps(2) infinite;
+    animation: Flicker2 0.4s steps(2) infinite;
 }
-
-.block {
-    position: absolute;
-    background: #0200CD;
-    z-index: 1;
-}
-
-.noise-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
 .typo-top {
     z-index: 3;
 }
 
 .typo-bottom {
     z-index: 5;
-    }
+}
 
 .tv-wrap {
     position: absolute;
     z-index: 3;
-}
-/* верхняя толстая */
-.noise-line {
-    height: 0.486vw;
-    background: rgba(255, 255, 255, 0.9);
-    opacity: 0;
-    animation: tvFlicker 0.3s steps(2) infinite;
-}
-
-/* нижняя тонкая (под ней) */
-.noise-subline {
-    margin-top: 3vw;
-    height: 0.0694vw;
-    background: rgba(255, 255, 255, 0.85);
-    opacity: 0;
-    animation: tvFlicker2 0.4s steps(2) infinite;
 }
 
 /* СТАРТ */
@@ -268,12 +225,10 @@ body {
     height: 6.39vw;
     background: #9B9B9B;
     border: 0.21vw solid #FFFFFF;
-
     font-family: "Basis33", sans-serif;
     font-size: 4vw;
     font-weight: 400;
     color: #FFFFFF;
-
     display: none;
     justify-content: center;
     align-items: center;
@@ -291,19 +246,14 @@ body {
 }
 
 /* ВТОРОЙ БЛОК */
-.security {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    background: #EEEEFF;
-}
 
-.security-stage {
+.security-screen {
     position: relative;
     width: 100vw;
     aspect-ratio: 1440 / 900;
     overflow: hidden;
     z-index: 3;
+    background: #EEEEFF
 }
 
 /* ЧЕРНЫЕ ПОДЛОЖКИ */
@@ -352,7 +302,6 @@ body {
     left: 6%;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
 }
 
@@ -378,13 +327,12 @@ body {
     font-weight: 400;
 }
 
-/* ХЭШ И БЕЗОПАСНОСТЬ */
+/* хештег и безопастность */
 
-.security-side {
+.security-right {
     display: flex;
     align-items: center;
     gap: 3vw;
-    width: fit-content;
     transform: translate(-4vw, -2vw);
 }
 
@@ -400,13 +348,10 @@ body {
 
 .security-security {
     color: #FFF;
-    font-family: "Inter";
     font-size: 2.78vw;
     text-transform: uppercase;
     padding: 0.3vw 0.8vw;
-
     transform: translate(-2vw, 0vw);
-    /* двигаем влево */
 }
 
 /* ОКНО */
@@ -415,11 +360,11 @@ body {
     position: absolute;
     left: 50%;
     top: 35%;
-    /* transform: translate(-20%, -50%); */
     width: 45vw;
     z-index: 3;
 }
 
+/* само окно фоткой */
 .security-window {
     width: 100%;
     display: block;
@@ -446,7 +391,6 @@ body {
 }
 
 /* КНОПКА */
-
 .security-start {
     width: 9vw;
     height: 3.5vw;
@@ -461,12 +405,6 @@ body {
 .security-bg {
     position: absolute;
     z-index: 1;
-}
-
-.noise-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
 }
 
 .security-header,
@@ -600,14 +538,7 @@ body {
 
 /* БЛОК ПРО ПЕРЕГРУЗКУ */
 
-.overload {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    background: #EEEEFF;
-}
-
-.overload-stage {
+.overload-screen {
     position: relative;
     width: 100vw;
     aspect-ratio: 1440 / 900;
@@ -629,14 +560,10 @@ body {
     top: -6%;
     width: 24%;
     height: 11%;
-    background: #EEEEFF;
-
     color: #0200CD;
-    font-family: "Inter", sans-serif;
     font-size: 3.1vw;
     font-weight: 400;
     line-height: 1;
-
     display: flex;
     align-items: center;
     padding-left: 2.8vw;
@@ -656,7 +583,6 @@ body {
 
 .overload-o-text {
     color: #0200CD;
-    font-family: "Inter", sans-serif;
     font-size: 8.8vw;
     font-weight: 400;
     line-height: 1;
@@ -677,7 +603,6 @@ body {
 
 .overload-word {
     color: #0200CD;
-    font-family: "Inter", sans-serif;
     font-size: 8.8vw;
     font-weight: 400;
     line-height: 1;
@@ -686,14 +611,13 @@ body {
 
 /* #2 справа */
 
-.overload-side {
+.overload-right {
     position: absolute;
     right: 0%;
     top: -10%;
     width: 28%;
     height: 30%;
     background: #0200CD;
-
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -756,7 +680,7 @@ body {
     cursor: pointer;
 }
 
-/* слой для будущих синих линий */
+/* слой для синих линий */
 
 .overload-noise-layer {
     position: absolute;
@@ -765,18 +689,19 @@ body {
     z-index: 2;
     overflow: hidden;
 }
+
 .overload-noise-pack {
     position: absolute;
     width: 100%;
     pointer-events: none;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .overload-noise-line {
     height: 0.486vw;
     background: rgba(2, 0, 205, 0.9);
     opacity: 0;
-    animation: tvFlicker 0.3s steps(2) infinite;
+    animation: Flicker 0.3s steps(2) infinite;
 }
 
 .overload-noise-subline {
@@ -784,7 +709,7 @@ body {
     height: 0.0694vw;
     background: rgba(2, 0, 205, 0.85);
     opacity: 0;
-    animation: tvFlicker2 0.4s steps(2) infinite;
+    animation: Flicker2 0.4s steps(2) infinite;
 }
 
 /* ИГРА */
@@ -808,6 +733,7 @@ body {
 .folders-layer,
 .pile-layer {
     position: absolute;
+    /* чтобы занимали всю область */
     inset: 0;
 }
 
@@ -819,26 +745,23 @@ body {
     transform: translateX(-50%);
     z-index: 4;
     pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
+/* которые летят */
 .papka-fly {
     position: absolute;
     width: 9vw;
     z-index: 3;
     pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
+/* которые в куче */
 .papka-pile {
     position: absolute;
     width: 9vw;
     z-index: 5;
     pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
+
 }
 
 .overload-popup {
@@ -861,7 +784,6 @@ body {
     transform: translate(-50%, -50%);
     background: #ffffff;
     border: 0.25vw solid #0200CD;
-    box-shadow: 0 0 0 0.2vw #8a8a8a;
 }
 
 .overload-popup-title {
@@ -869,7 +791,6 @@ body {
     height: 3vw;
     background: #0200CD;
     color: #FFFFFF;
-    font-family: "Inter", sans-serif;
     font-size: 2vw;
     display: flex;
     align-items: center;
@@ -914,6 +835,7 @@ body {
     font-size: 2vw;
     cursor: pointer;
 }
+
 .popup-window {
     position: absolute;
     left: 50%;
@@ -930,17 +852,13 @@ body {
     height: 16vw;
     transform: translate(-50%, -40%);
 }
+
 /* ИГРА РЫБЫ */
 
-
-.collection {
+.collection-screen {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    background: #EEEEFF;
-}
-
-.collection-stage {
     position: relative;
     width: 100vw;
     aspect-ratio: 1440 / 900;
@@ -1095,6 +1013,7 @@ body {
     pointer-events: none;
     z-index: 2;
 }
+
 .collection-window-wrap.hidden {
     display: none;
 }
@@ -1122,8 +1041,6 @@ body {
     height: auto;
     z-index: 6;
     cursor: pointer;
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
 .fish-popup,
@@ -1257,7 +1174,7 @@ body {
     justify-content: center;
 }
 
-.registration-stage {
+.registration-screen {
     position: relative;
     width: 100vw;
     aspect-ratio: 1440 / 900;
@@ -1279,7 +1196,6 @@ body {
 
 .registration-label {
     color: #0200CD;
-    font-family: "Inter", sans-serif;
     font-size: 9vw;
     font-weight: 400;
     line-height: 1;
@@ -1424,4 +1340,119 @@ body {
     inset: 0;
     pointer-events: none;
     z-index: 2;
+    overflow: hidden;
+}
+
+.registration-window-wrap.hidden {
+    display: none;
+}
+
+.registration-runaway-btn {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translateX(-50%);
+    display: none;
+    z-index: 5;
+
+    min-width: 35vw;
+    height: 5.5vw;
+    padding: 0 1.5vw;
+
+    background: white;
+    border: 0.14vw solid #000;
+    color: #000;
+    font-family: "Basis33", sans-serif;
+    font-size: 2.8vw;
+    cursor: pointer;
+}
+
+.registration-runaway-btn.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ФУТЕР */
+.footer {
+    width: 100%;
+    background: #EEEEFF;
+}
+
+.footer-screen {
+    position: relative;
+    width: 100%;
+    height: 16vw;
+    background: #EEEEFF;
+    overflow: hidden;
+}
+
+.footer-block {
+    position: absolute;
+    background: #000000;
+}
+
+.footer-block-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 52%;
+    height: 100%;
+    background: #000;
+}
+
+.footer-block-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 52%;
+    height: 55%;
+    background: #000;
+}
+
+.footer-left {
+    position: absolute;
+    left: 4%;
+    top: 24%;
+    z-index: 2;
+}
+
+.footer-right {
+    position: absolute;
+    left: 55%;
+    top: 20%;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5vw;
+}
+
+.footer-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.footer-line-second {
+    margin-top: 1.8vw;
+}
+
+.footer-text {
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-size: 2.8vw;
+    font-weight: 400;
+}
+
+.footer-right .footer-text {
+    color: #000;
+}
+
+.footer-o {
+    height: 2vw;
+    transform: translateY(0.2vw);
+    margin-right: 1vw;
+}
+
+.footer-o-black {
+    filter: brightness(0);
 }

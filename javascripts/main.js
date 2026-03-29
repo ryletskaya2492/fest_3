@@ -5,7 +5,7 @@ function isMobileGame() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  startNoise('#noiseLayerHero')
+  startNoise('#noiseLayerFirst')
   startNoise('#noiseLayerSecurity')
   startIntro()
   initSecurityGame()
@@ -14,20 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   startNoise('#collectionNoiseLayer')
   initCollectionGame()
   startNoise('#collectionNoiseLayer')
+  startBlueNoise('#registrationNoiseLayer')
+  initRegistrationBlock()
 })
 
 function startNoise(layerId) {
   let noiseLayer = document.querySelector(layerId)
 
-  if (!noiseLayer) {
-    return
-  }
-
   // возвращает случайное число от 0 до 1, задаем интервалы
   setInterval(() => {
     let chance = Math.random()
 
-// если случайное число меньше 0.6, линия не создаётся.
+// если случайное число меньше 0.6, линия не создаётся
 // если больше или равно 0.6, вызывается
     if (chance < 0.6) {
       return
@@ -66,6 +64,57 @@ function createNoisePack(noiseLayer) {
 
   // тут рандомное время жизни линий высчитываем и удаляем контейнер
   let life = 600 + Math.random() * 1200
+  setTimeout(() => {
+    pack.remove()
+  }, life)
+}
+
+// тоже самое только СИНИЕ
+function startBlueNoise(layerId) {
+  let noiseLayer = document.querySelector(layerId)
+
+
+  setInterval(() => {
+    let chance = Math.random()
+
+    if (chance < 0.6) {
+      return
+    } else {
+      createBlueNoisePack(noiseLayer)
+    }
+  }, 120)
+}
+function createBlueNoisePack(noiseLayer) {
+  // контейнер для линий
+  let pack = document.createElement('div')
+  pack.classList.add('overload-noise-pack')
+
+  // толстая линия
+  let line = document.createElement('div')
+  line.classList.add('overload-noise-line')
+
+  // тонкая линия
+  let sub = document.createElement('div')
+  sub.classList.add('overload-noise-subline')
+
+  // добавляем линии в контейнер
+  pack.append(line)
+  pack.append(sub)
+
+  // теперь не всегда слева, а случайно по X
+  let left = Math.random() * 55
+  pack.style.left = left + '%'
+
+  // случайная позиция по Y
+  let top = Math.random() * 90
+  pack.style.top = top + '%'
+
+  // добавляем в слой
+  noiseLayer.append(pack)
+
+  // случайное время жизни
+  let life = 600 + Math.random() * 1200
+
   setTimeout(() => {
     pack.remove()
   }, life)
@@ -134,13 +183,14 @@ function blinkThenHide(textElement, button) {
 function enableScroll(button) {
   button.addEventListener('click', () => {
     window.scrollTo({
+      // высота видимой части окна браузера
       top: window.innerHeight,
       behavior: 'smooth'
     })
   })
 }
 
-// ЛАБИРИНТ
+// ЛАБИРИНТ будь он проклят
 
 let gameStarted = false
 let gameOver = false
@@ -149,7 +199,7 @@ let currentPlayerIndex = 0
 let currentSonicIndex = 0
 
 // пути дл пк
-
+// координаты типо слева сверху
 let playerPath = [
   { x: 2, y: 33 },
   { x: 2, y: 28 },
@@ -158,19 +208,16 @@ let playerPath = [
   { x: 5, y: 14 },
   { x: 6, y: 13 },
   { x: 7, y: 11 },
-
   { x: 9, y: 23 },
   { x: 12, y: 26 },
   { x: 15, y: 28 },
   { x: 18, y: 29 },
   { x: 21, y: 29 },
-
   { x: 24, y: 27 },
   { x: 26, y: 23 },
   { x: 27, y: 19 },
   { x: 28, y: 16 },
   { x: 29, y: 14 },
-
   { x: 31, y: 11 },
   { x: 34, y: 11 },
   { x: 38, y: 11 }
@@ -207,21 +254,17 @@ let playerPathMobile = [
   { x: 64, y: 9 },
   { x: 67, y: 10 },
   { x: 68, y: 12 },
-
   { x: 66, y: 13 },
   { x: 63, y: 14 },
-
   { x: 59, y: 16 },
   { x: 56, y: 18 },
   { x: 54, y: 20 },
   { x: 53, y: 22 },
-
   { x: 53, y: 26 },
   { x: 54, y: 30 },
   { x: 58, y: 32 },
   { x: 62, y: 33 },
   { x: 66, y: 34 },
-
   { x: 66, y: 38 },
   { x: 66, y: 42 },
   { x: 66, y: 46 }
@@ -264,7 +307,7 @@ function getSonicPath() {
   return sonicPath
 }
 
-// инициализация
+// начало игры
 
 function initSecurityGame() {
   // поиск кнопок
@@ -333,15 +376,19 @@ function startSecurityGame() {
   if (controls && window.innerWidth <= 768) {
     controls.classList.add('visible')
   }
+
+  // обновляем состояние игры
   gameStarted = true
   gameOver = false
   currentPlayerIndex = 0
   currentSonicIndex = 0
 
+  // помещаем комп и соника и соник сразу стартует
   placePlayer()
   placeSonic()
   startSonic()
 }
+
 
 // перемещение персонажей
 
@@ -349,11 +396,7 @@ function placePlayer() {
   let player = document.querySelector('#labPk')
   let path = getPlayerPath()
 
-  if (!player) {
-    return
-  }
-
-  // точка где сейчас стоит комп за который мы ходим
+  // точка где сейчас стоит комп за который мы ходим (координата + %)
   player.style.left = path[currentPlayerIndex].x + '%'
   player.style.top = path[currentPlayerIndex].y + '%'
 }
@@ -362,15 +405,10 @@ function placeSonic() {
   let sonic = document.querySelector('#labSonic')
   let path = getSonicPath()
 
-  if (!sonic) {
-    return
-  }
-
-  // тоже установка соника в нужное место
+// тоже установка соника в нужное место
   sonic.style.left = path[currentSonicIndex].x + '%'
   sonic.style.top = path[currentSonicIndex].y + '%'
 }
-
 
 // движение
 function movePlayer(event) {
@@ -390,7 +428,7 @@ function handlePlayerMove(key) {
 // ставим комп на точку 
 // проверяем столкновение с Соником
   if (key == 'ArrowRight') {
-    // минут 1 потому что с 0 начинаются, чтобы не выйти за границы маршрута
+    // минус 1 потому что с 0 начинаются индексы массива, чтобы не выйти за границы маршрута
     if (currentPlayerIndex < path.length - 1) {
       currentPlayerIndex = currentPlayerIndex + 1
       placePlayer()
@@ -411,10 +449,8 @@ function handlePlayerMove(key) {
 }
 
 // соник
-
 function startSonic() {
   let path = getSonicPath()
-
   sonicMoveTimer = setInterval(() => {
     if (gameOver == true) {
       clearInterval(sonicMoveTimer)
@@ -447,19 +483,17 @@ function checkCatch() {
   // считаем расстояние по обеим осям
   let distanceX = Math.abs(player.x - sonic.x)
   let distanceY = Math.abs(player.y - sonic.y)
-// если оно крайне маленькое ПО ОБЕИМ осям, то засчитываем столкновение
+  // если оно крайне маленькое ПО ОБЕИМ осям, то засчитываем столкновение
   if (distanceX < 4 && distanceY < 4) {
     showErrorPopup()
   }
 }
 
 // попап
-
 function showErrorPopup() {
   let popup = document.querySelector('#errorPopup')
 
   gameOver = true
-  clearInterval(sonicMoveTimer)
 
   if (popup) {
     popup.classList.add('visible')
@@ -501,56 +535,6 @@ function resetSecurityGame() {
   placeSonic()
 }
 
-// СИНИЕ ПОЛОСЫ
-function startBlueNoise(layerId) {
-  let noiseLayer = document.querySelector(layerId)
-
-
-  setInterval(() => {
-    let chance = Math.random()
-
-    if (chance < 0.6) {
-      return
-    } else {
-      createBlueNoisePack(noiseLayer)
-    }
-  }, 120)
-}
-function createBlueNoisePack(noiseLayer) {
-  // контейнер для линий
-  let pack = document.createElement('div')
-  pack.classList.add('overload-noise-pack')
-
-  // толстая линия
-  let line = document.createElement('div')
-  line.classList.add('overload-noise-line')
-
-  // тонкая линия
-  let sub = document.createElement('div')
-  sub.classList.add('overload-noise-subline')
-
-  // добавляем линии в контейнер
-  pack.append(line)
-  pack.append(sub)
-
-  // теперь не всегда слева, а случайно по X
-  let left = Math.random() * 55
-  pack.style.left = left + '%'
-
-  // случайная позиция по Y
-  let top = Math.random() * 90
-  pack.style.top = top + '%'
-
-  // добавляем в слой
-  noiseLayer.append(pack)
-
-  // случайное время жизни
-  let life = 600 + Math.random() * 1200
-
-  setTimeout(() => {
-    pack.remove()
-  }, life)
-}
 
 // ИГРА ПАПКИ
 
@@ -573,23 +557,25 @@ let pileCount = 0
 // таймер игры
 let moveTimer = null
 
-// подготовка игры (поиск элементов, навешивание событий)
+// подготовка игры (поиск элементов, навешиваем события)
 function initOverloadGame() {
   let startBtn = document.querySelector('#overloadStartBtn')
   let popupBtn = document.querySelector('#popupBtn')
   let game = document.querySelector('#overloadGame')
 
+// начало игры
   if (startBtn) {
     startBtn.addEventListener('click', startOverloadGame)
   }
 
+//  обнуление игры
   if (popupBtn) {
     popupBtn.addEventListener('click', resetOverloadGame)
   }
 // если игра найдена, то корзина двигается + отмена скрола на телефоне
   if (game) {
     game.addEventListener('mousemove', moveKorzinaMouse)
-    game.addEventListener('touchmove', moveKorzinaTouch, { passive: false })
+    game.addEventListener('touchmove', moveKorzinaTouch)
   }
 }
 
@@ -631,7 +617,7 @@ function startOverloadGame() {
   overloadGameOver = false
   pileCount = 0
 
-  // создаем нашу папку
+// создаем нашу папку
   createFolder()
 // каждые 20 секунд вызываем движение папки
   moveTimer = setInterval(() => {
@@ -641,6 +627,7 @@ function startOverloadGame() {
 
 // движение корзины
 function moveKorzinaMouse(event) {
+// "ниче не делай еслии игра еще не началась или уже закончилась"
   if (overloadStarted == false) {
     return
   }
@@ -710,12 +697,12 @@ function createFolder() {
 
   let foldersLayer = document.querySelector('#foldersLayer')
 
-  // создаем тег, добавляем картинку и вещаем стиль
+  // создаем тег, добавляем картинку и вешвем стиль
   let folder = document.createElement('img')
   folder.src = 'images/papka.png'
   folder.className = 'papka-fly'
  
-  // тут типо 4 рандомные траектории (0-4)
+  // тут типо 4 рандомные траектории (0-4) (рандомное число от 0 до 1, умножаем на 4 и округляем)
   let line = Math.floor(Math.random() * 4)
 
   // появляется слева сверху и летит вправо вниз
@@ -783,7 +770,7 @@ function moveFolder() {
     return
   }
 
-  // если не была поймана и вылетела за границу - тоже в кучу
+  // если не была поймана и вылетела за границу - тоже в кучу, 72, потому что корзина где то на 68 стоит
   if (currentY > 72) {
     putFolderInPile()
     return
@@ -803,6 +790,7 @@ function folderCaught() {
   let folderY = gameRect.top + gameRect.height * currentY / 100
 
   // зона корзин, куда должна попасть папка
+  // типо левый край корзины + 20% от ее ширины
   let leftEdge = korzinaRect.left + korzinaRect.width * 0.2
   let rightEdge = korzinaRect.right - korzinaRect.width * 0.2
   let topEdge = korzinaRect.top
@@ -818,7 +806,6 @@ function folderCaught() {
     }
   }
 }
-
   return false
 }
 
@@ -1016,13 +1003,13 @@ function createStartFish() {
 
 // создаем рыбо
 function createOneFish(name, left, top, speed) {
-  // новый тег + даем имя
+// новый тег + даем имя
   let fish = document.createElement('img')
 // создаю картинку силуэта рыбы
   fish.src = getFishSilhouetteSrc(name)
-  // даем класс, чтобы стили применились
+// даем класс, чтобы стили применились
   fish.className = 'silhouette-fish'
-  // на экран помещаем, координаты в %
+// на экран помещаем, координаты в %
   fish.style.left = left + '%'
   fish.style.top = top + '%'
 
@@ -1044,7 +1031,7 @@ function createOneFish(name, left, top, speed) {
 function startFishMovement() {
   clearInterval(fishMoveTimer)
 
-  // каждые 20 секунд
+  // каждые 20 мсекунд
   fishMoveTimer = setInterval(() => {
     moveAllFish()
   }, 20)
@@ -1061,11 +1048,11 @@ function moveAllFish() {
   }
 
   let allFish = document.querySelectorAll('.silhouette-fish')
-
+ 
+  // достаем из дата сета для каждой рыбы и number - переводим в число
   allFish.forEach((fish) => {
     let left = Number(fish.dataset.left)
     let speed = Number(fish.dataset.speed)
-
     left = left + speed
 
     // ксли рыба плывет вправо и уже уплыла слишком далеко, переносим ее за левый край
@@ -1150,11 +1137,6 @@ function rejectFish() {
 
 function spawnReplacementFish() {
   let fishLayer = document.querySelector('#fishLayer')
-
-  if (!fishLayer) {
-    return
-  }
-
   let name = selectedFishName  
 
   // случайное расположение рыбы
@@ -1249,4 +1231,45 @@ function resetCollectionGame() {
   collectionPopupOpen = false
   selectedFishElement = null
   selectedFishName = ''
+}
+
+// КНОПКА РЕГИСТРАЦИИ
+
+function initRegistrationBlock() {
+  let openBtns = document.querySelectorAll('.registration-open-btn')
+  let windowWrap = document.querySelector('#registrationWindowWrap')
+  let runawayBtn = document.querySelector('#registrationRunawayBtn')
+
+  openBtns.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (windowWrap) {
+        windowWrap.classList.add('hidden')
+      }
+
+      if (runawayBtn) {
+        runawayBtn.classList.add('show')
+      }
+    })
+  })
+
+  if (runawayBtn) {
+    runawayBtn.addEventListener('mouseenter', moveRegistrationButton)
+    runawayBtn.addEventListener('touchstart', moveRegistrationButton)
+  }
+}
+
+function moveRegistrationButton(event) {
+  let runawayBtn = document.querySelector('#registrationRunawayBtn')
+
+  if (event.type == 'touchstart') {
+    event.preventDefault()
+  }
+
+  // случайное положение кнопки
+  let randomLeft = 10 + Math.random() * 70
+  let randomTop = 35 + Math.random() * 45
+
+  runawayBtn.style.left = randomLeft + '%'
+  runawayBtn.style.top = randomTop + '%'
+  runawayBtn.style.transform = 'translateX(0)'
 }
