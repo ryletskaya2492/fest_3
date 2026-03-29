@@ -1,9 +1,3 @@
-// проверяем ширину экрана браузера, в случае чего считываем "мобильную"
-// если ширина меньше или равна 414, функция возвращает true
-function isMobileGame() {
-  return window.innerWidth <= 414
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   startNoise('#noiseLayerFirst')
   startNoise('#noiseLayerSecurity')
@@ -113,6 +107,7 @@ function createBlueNoisePack(noiseLayer) {
   noiseLayer.append(pack)
 
   // случайное время жизни
+  // в таких случаях числа подбираю по применимости, условно тут случайное число от 600 до 1800 может получиться
   let life = 600 + Math.random() * 1200
 
   setTimeout(() => {
@@ -289,6 +284,12 @@ let sonicPathMobile = [
   { x: 66, y: 42 },
   { x: 66, y: 38 }
 ]
+
+// проверяем ширину экрана браузера, в случае чего считываем "мобильную"
+// если ширина меньше или равна 414, функция возвращает true (для лабиринта)
+function isMobileGame() {
+  return window.innerWidth <= 414
+}
 
 // проверяет экран, а следовательно какой путь использовать
 function getPlayerPath() {
