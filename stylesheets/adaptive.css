@@ -178,7 +178,7 @@
     .security-bg-2 {
         left: 50%;
         top: 5%;
-        width: 70%;
+        width: 50%;
         height: 10%;
     }
 
@@ -595,6 +595,11 @@
         height: 100%;
     }
 
+    .collection-block-bottom-2 {
+        top: 10%;
+        height: 30%;
+    }
+
     .collection-title {
         left: 3.5%;
         top: 6.3%;
@@ -659,6 +664,7 @@
         height: 100vh;
         aspect-ratio: auto;
         align-items: flex-start;
+        transform: translateY(0%);
     }
 
     /* ЛЕВАЯ ЧАСТЬ: РЕГ + И */
