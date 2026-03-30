@@ -216,7 +216,6 @@
         font-size: 20vw;
     }
 
-    /* правая группа */
     .security-right {
         gap: 2vw;
         transform: translate(0, 0);
@@ -667,7 +666,7 @@
         transform: translateY(0%);
     }
 
-    /* ЛЕВАЯ ЧАСТЬ: РЕГ + И */
+    /* рег и  */
 
     .registration-left {
         left: 2%;
@@ -690,7 +689,7 @@
         width: 15vw;
     }
 
-    /* ЦЕНТР: СТР */
+    /* стр */
 
     .registration-center {
         left: 27%;
@@ -701,7 +700,7 @@
         font-size: 14vw;
     }
 
-    /* ПРАВАЯ ЧАСТЬ: АЦ + Я */
+    /*ац и я */
 
     .registration-right {
         left: 53%;
@@ -733,7 +732,7 @@
         margin-top: 1vw;
     }
 
-    /* ОКНО — как в других мобильных блоках */
+    /* окно — как в других мобильных блоках */
 
     .registration-window-wrap {
         left: 50%;
